@@ -11,7 +11,7 @@
 		8A3CF28A290FA22C002A4161 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF289290FA22C002A4161 /* ContentView.swift */; };
 		8A3CF28C290FA22E002A4161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3CF28B290FA22E002A4161 /* Assets.xcassets */; };
 		8A3CF28F290FA22E002A4161 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3CF28E290FA22E002A4161 /* Preview Assets.xcassets */; };
-		8A3CF296290FA47C002A4161 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF295290FA47B002A4161 /* MenuView.swift */; };
+		8A3CF296290FA47C002A4161 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF295290FA47B002A4161 /* HelpView.swift */; };
 		8A3CF298290FA493002A4161 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF297290FA493002A4161 /* InformationView.swift */; };
 		8A3CF29A290FA4F6002A4161 /* ItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF299290FA4F6002A4161 /* ItemInfo.swift */; };
 		8A3CF29E290FA603002A4161 /* TitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF29D290FA603002A4161 /* TitleTextField.swift */; };
@@ -27,7 +27,7 @@
 		8A3CF289290FA22C002A4161 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8A3CF28B290FA22E002A4161 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3CF28E290FA22E002A4161 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8A3CF295290FA47B002A4161 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		8A3CF295290FA47B002A4161 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		8A3CF297290FA493002A4161 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		8A3CF299290FA4F6002A4161 /* ItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfo.swift; sourceTree = "<group>"; };
 		8A3CF29D290FA603002A4161 /* TitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextField.swift; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 				8A3CF2A4290FD581002A4161 /* Utils */,
 				8A3CF287290FA22C002A4161 /* ToDoListAppApp.swift */,
 				8A3CF289290FA22C002A4161 /* ContentView.swift */,
-				8A3CF295290FA47B002A4161 /* MenuView.swift */,
+				8A3CF295290FA47B002A4161 /* HelpView.swift */,
 				8A3CF29C290FA5CC002A4161 /* InformationUI */,
 				8A3CF2A1290FB10E002A4161 /* ItemData */,
 				8A3CF28B290FA22E002A4161 /* Assets.xcassets */,
@@ -188,7 +188,7 @@
 				8A3CF29E290FA603002A4161 /* TitleTextField.swift in Sources */,
 				8A3CF28A290FA22C002A4161 /* ContentView.swift in Sources */,
 				8A3CF298290FA493002A4161 /* InformationView.swift in Sources */,
-				8A3CF296290FA47C002A4161 /* MenuView.swift in Sources */,
+				8A3CF296290FA47C002A4161 /* HelpView.swift in Sources */,
 				8A3CF2A3290FB14D002A4161 /* ItemDB.swift in Sources */,
 				8A3CF288290FA22C002A4161 /* ToDoListAppApp.swift in Sources */,
 				8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */,
@@ -325,6 +325,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ToDoListApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -353,6 +354,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ToDoListApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

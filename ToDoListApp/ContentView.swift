@@ -4,7 +4,7 @@ import SwiftUI
 
 // MARK: MAIN PAGE
 struct ContentView: View {
-    let navTitle: String = "All Lists"
+    let navTitle: String = "Todos"
     @StateObject var itemDataBase: ItemDB = ItemDB()
     @State var toUpdate: Bool = false
     //@State var isUndoDisabled:Bool
@@ -30,6 +30,10 @@ struct ContentView: View {
                 // Update Button
                 ToolbarItem(placement: .navigationBarLeading) {
                     UpdateButton(toUpdate: $toUpdate)
+                }
+                // Add Undo for new items
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HelpButton()
                 }
                 // Add Undo for new items
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -77,6 +81,14 @@ struct NewButton: View {
     }
 }
 
+// MARK: NEW BUTTON
+/// New Button which opens InformationView Window
+struct HelpButton: View {
+    var body: some View {
+        Link("Help", destination: URL(string: "https://github.com/SadilKhan/ToDoListApp")!)
+    }
+}
+
 // MARK: ADD BUTTON
 /// Opens a new window for adding an item
 struct AddButton: View {
@@ -96,8 +108,8 @@ struct UndoButton:View{
         Button {
             if itemDataBase.allDeletedItems.count>0{
                 itemDataBase.appendItem(itemDataBase.allDeletedItems[0].1)
+                itemDataBase.allDeletedItems.removeFirst()
             }
-            itemDataBase.allDeletedItems.removeFirst()
         } label: {
             Text("Undo")
         }
