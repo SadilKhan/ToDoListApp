@@ -35,6 +35,7 @@
 		8A3CF2A2290FB14D002A4161 /* ItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDB.swift; sourceTree = "<group>"; };
 		8A3CF2A5290FD59C002A4161 /* ColorsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsDB.swift; sourceTree = "<group>"; };
 		8AC0FAEF2910069B00F52FD9 /* DateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateField.swift; sourceTree = "<group>"; };
+		8AC0FAF12910475C00F52FD9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 				8A3CF2A1290FB10E002A4161 /* ItemData */,
 				8A3CF28B290FA22E002A4161 /* Assets.xcassets */,
 				8A3CF28D290FA22E002A4161 /* Preview Content */,
+				8AC0FAF12910475C00F52FD9 /* README.md */,
 			);
 			path = ToDoListApp;
 			sourceTree = "<group>";
