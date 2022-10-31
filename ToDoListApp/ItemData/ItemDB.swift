@@ -27,7 +27,7 @@ class ItemDB: ObservableObject {
     func deleteItem(index: IndexSet) {
         index.forEach { i in
             allItems.removeValue(forKey: allKeys[i])
-            allKeys.remove(atOffsets:index)
+            allKeys.remove(at: i)
         }
     }
 }

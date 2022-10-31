@@ -11,6 +11,7 @@ class ToDoItem: Identifiable {
     private var titleText: String
     private var descriptionText:String
     private var date:String
+    var isDone:Bool=false
     
     init(titleText: String, descriptionText: String, date: String) {
         self.titleText = titleText
