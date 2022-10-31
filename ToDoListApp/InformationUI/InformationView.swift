@@ -15,25 +15,34 @@ import SwiftUI
 /// ```
 ///
 struct InformationView: View {
+    // MARK: PROPERTIES
     @State var defaultTitleText: String
     @State var titleText: String
     @State var descriptionText: String
-    @State var date: String
+    @State var selectedDate: Date
     var id: String = ""
     @EnvironmentObject var itemDataBase: ItemDB
     @Environment(\.dismiss) private var dismiss
+
+    // MARK: BODY
     var body: some View {
         VStack {
             // Title Text
             TitleTextField(defaultTitleText: $defaultTitleText, titleText: $titleText)
             // Description Field
             DescriptionField(descriptionText: $descriptionText)
+            // Date Field
+            DateField(selectedDate: $selectedDate)
             // Save Button
             Button {
                 if itemDataBase.allItems[self.id] != nil {
-                    itemDataBase.allItems[self.id]=ToDoItem(titleText: self.titleText, descriptionText: self.descriptionText, date: self.date)
+                    itemDataBase.allItems[self.id] = ToDoItem(titleText: self.titleText,
+                        descriptionText: self.descriptionText,
+                        date: self.selectedDate)
                 } else {
-                    itemDataBase.appendItem(ToDoItem(titleText: titleText, descriptionText: descriptionText, date: date))
+                    itemDataBase.appendItem(ToDoItem(titleText: titleText,
+                        descriptionText: descriptionText,
+                        date: selectedDate))
                 }
                 dismiss()
             } label: {
@@ -47,18 +56,20 @@ struct InformationView: View {
         }
     }
 
+    // MARK: CONSTRUCTOR
+
     init() {
-        self._defaultTitleText=State(initialValue: "Write Something Here")
+        self._defaultTitleText = State(initialValue: "Write Something Here")
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
-        self._date = State(initialValue: "")
+        self._selectedDate = State(initialValue: Date())
     }
 
     init(key: String, item: ToDoItem) {
         self._defaultTitleText = State(initialValue: item.getTitleText())
         self._titleText = State(initialValue: item.getTitleText())
         self._descriptionText = State(initialValue: item.getDecriptionText())
-        self._date=State(initialValue: item.getDate())
+        self._selectedDate = State(initialValue: item.getDate())
         self.id = key
     }
 
@@ -66,6 +77,6 @@ struct InformationView: View {
 
 struct InformationView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationView(key: "6", item: ToDoItem(titleText: "Grocery", descriptionText: "Heyyy", date: "22-19"))
+        InformationView()
     }
 }

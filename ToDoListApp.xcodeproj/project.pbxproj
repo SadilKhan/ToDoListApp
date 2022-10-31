@@ -18,6 +18,7 @@
 		8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF29F290FA86B002A4161 /* DescriptionField.swift */; };
 		8A3CF2A3290FB14D002A4161 /* ItemDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF2A2290FB14D002A4161 /* ItemDB.swift */; };
 		8A3CF2A6290FD59C002A4161 /* ColorsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF2A5290FD59C002A4161 /* ColorsDB.swift */; };
+		8AC0FAF02910069B00F52FD9 /* DateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0FAEF2910069B00F52FD9 /* DateField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		8A3CF29F290FA86B002A4161 /* DescriptionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionField.swift; sourceTree = "<group>"; };
 		8A3CF2A2290FB14D002A4161 /* ItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDB.swift; sourceTree = "<group>"; };
 		8A3CF2A5290FD59C002A4161 /* ColorsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsDB.swift; sourceTree = "<group>"; };
+		8AC0FAEF2910069B00F52FD9 /* DateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				8A3CF297290FA493002A4161 /* InformationView.swift */,
 				8A3CF29F290FA86B002A4161 /* DescriptionField.swift */,
 				8A3CF29D290FA603002A4161 /* TitleTextField.swift */,
+				8AC0FAEF2910069B00F52FD9 /* DateField.swift */,
 			);
 			path = InformationUI;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				8A3CF288290FA22C002A4161 /* ToDoListAppApp.swift in Sources */,
 				8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */,
 				8A3CF2A6290FD59C002A4161 /* ColorsDB.swift in Sources */,
+				8AC0FAF02910069B00F52FD9 /* DateField.swift in Sources */,
 				8A3CF29A290FA4F6002A4161 /* ItemInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,7 +334,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.student.ToDoListApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -358,7 +362,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.student.ToDoListApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
