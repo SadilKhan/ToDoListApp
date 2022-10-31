@@ -16,7 +16,7 @@ import SwiftUI
 ///
 struct InformationView: View {
     @State var titleText: String = ""
-    @State var descriptionText:String = ""
+    @State var descriptionText: String = ""
     var body: some View {
         VStack {
             // Title Text
@@ -25,7 +25,7 @@ struct InformationView: View {
             DescriptionField(descriptionText: $descriptionText)
             // Save Button
             Button {
-                
+
             } label: {
                 Text("Save")
                     .padding()
@@ -34,8 +34,6 @@ struct InformationView: View {
                     .padding()
                     .foregroundColor(.white)
             }
-
-            
         }
     }
 }

@@ -16,6 +16,7 @@
 		8A3CF29A290FA4F6002A4161 /* ItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF299290FA4F6002A4161 /* ItemInfo.swift */; };
 		8A3CF29E290FA603002A4161 /* TitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF29D290FA603002A4161 /* TitleTextField.swift */; };
 		8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF29F290FA86B002A4161 /* DescriptionField.swift */; };
+		8A3CF2A3290FB14D002A4161 /* ItemDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF2A2290FB14D002A4161 /* ItemDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		8A3CF299290FA4F6002A4161 /* ItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfo.swift; sourceTree = "<group>"; };
 		8A3CF29D290FA603002A4161 /* TitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextField.swift; sourceTree = "<group>"; };
 		8A3CF29F290FA86B002A4161 /* DescriptionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionField.swift; sourceTree = "<group>"; };
+		8A3CF2A2290FB14D002A4161 /* ItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +66,8 @@
 				8A3CF287290FA22C002A4161 /* ToDoListAppApp.swift */,
 				8A3CF289290FA22C002A4161 /* ContentView.swift */,
 				8A3CF295290FA47B002A4161 /* MenuView.swift */,
-				8A3CF29C290FA5CC002A4161 /* Information */,
-				8A3CF299290FA4F6002A4161 /* ItemInfo.swift */,
+				8A3CF29C290FA5CC002A4161 /* InformationUI */,
+				8A3CF2A1290FB10E002A4161 /* ItemData */,
 				8A3CF28B290FA22E002A4161 /* Assets.xcassets */,
 				8A3CF28D290FA22E002A4161 /* Preview Content */,
 			);
@@ -80,14 +82,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		8A3CF29C290FA5CC002A4161 /* Information */ = {
+		8A3CF29C290FA5CC002A4161 /* InformationUI */ = {
 			isa = PBXGroup;
 			children = (
 				8A3CF297290FA493002A4161 /* InformationView.swift */,
 				8A3CF29F290FA86B002A4161 /* DescriptionField.swift */,
 				8A3CF29D290FA603002A4161 /* TitleTextField.swift */,
 			);
-			path = Information;
+			path = InformationUI;
+			sourceTree = "<group>";
+		};
+		8A3CF2A1290FB10E002A4161 /* ItemData */ = {
+			isa = PBXGroup;
+			children = (
+				8A3CF299290FA4F6002A4161 /* ItemInfo.swift */,
+				8A3CF2A2290FB14D002A4161 /* ItemDB.swift */,
+			);
+			path = ItemData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +175,7 @@
 				8A3CF28A290FA22C002A4161 /* ContentView.swift in Sources */,
 				8A3CF298290FA493002A4161 /* InformationView.swift in Sources */,
 				8A3CF296290FA47C002A4161 /* MenuView.swift in Sources */,
+				8A3CF2A3290FB14D002A4161 /* ItemDB.swift in Sources */,
 				8A3CF288290FA22C002A4161 /* ToDoListAppApp.swift in Sources */,
 				8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */,
 				8A3CF29A290FA4F6002A4161 /* ItemInfo.swift in Sources */,

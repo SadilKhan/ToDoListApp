@@ -7,18 +7,18 @@ import SwiftUI
 struct TitleTextField: View {
     @Binding var titleText: String
     var body: some View {
-        VStack{
+        VStack {
             // Title Text
             Text("Title")
                 .font(.title)
                 .fontWeight(.semibold)
-                .frame(maxWidth: .infinity,alignment: .leading)
-                .padding(.horizontal,10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 10)
             // TextField for adding title
-            TextField("Type Something Here",text: $titleText)
+            TextField("Type Something Here", text: $titleText)
                 .padding()
                 .background(Color.gray.opacity(0.1).cornerRadius(10))
-                .padding(.horizontal,10)
+                .padding(.horizontal, 10)
         }
     }
 }
