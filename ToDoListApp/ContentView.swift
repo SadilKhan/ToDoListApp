@@ -10,38 +10,43 @@ struct ContentView: View {
     //@State var isUndoDisabled:Bool
     var body: some View {
         NavigationView { // NAV START
-            List { // LIST START
-                ForEach(itemDataBase.allKeys, id: \.self) { key in
-                    NextPageNavLink(key: key)
-                }
-                    .onDelete(perform: itemDataBase.deleteItem)
-                    .onChange(of: toUpdate) { newValue in
-                        itemDataBase.deleteItemDone()
-                }
-            } // LIST END
-            .listStyle(.grouped)
-            // Navigation Bar Customization
-            .navigationTitle(navTitle)
-                .toolbar {
-                // Edit Button
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-                // Update Button
-                ToolbarItem(placement: .navigationBarLeading) {
-                    UpdateButton(toUpdate: $toUpdate)
-                }
-                // Add Undo for new items
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HelpButton()
-                }
-                // Add Undo for new items
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    UndoButton()
-                }
-                // Add Button for new items
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NewButton()
+            ZStack {
+                Text("Add a new Item")
+                    .font(.title2)
+                    .fontWeight(.light)
+                List { // LIST START
+                    ForEach(itemDataBase.allKeys, id: \.self) { key in
+                        NextPageNavLink(key: key)
+                    }
+                        .onDelete(perform: itemDataBase.deleteItem)
+                        .onChange(of: toUpdate) { newValue in
+                            itemDataBase.deleteItemDone()
+                    }
+                } // LIST END
+                .listStyle(.grouped)
+                // Navigation Bar Customization
+                .navigationTitle(navTitle)
+                    .toolbar {
+                    // Edit Button
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        EditButton()
+                    }
+                    // Update Button
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        UpdateButton(toUpdate: $toUpdate)
+                    }
+                    // Add Undo for new items
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        HelpButton()
+                    }
+                    // Add Undo for new items
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        UndoButton()
+                    }
+                    // Add Button for new items
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NewButton()
+                    }
                 }
             }
         } // NAV END
