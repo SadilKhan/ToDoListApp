@@ -28,7 +28,7 @@ struct ContentView: View {
                 // Navigation Bar Customization
                 .searchable(text: $searchText)
                     .navigationTitle(navTitle)
-                    .toolbar {
+                    .toolbar { // TOOLBAR START
                     // Edit Button
                     ToolbarItem(placement: .navigationBarLeading) {
                         EditButton()
@@ -49,7 +49,7 @@ struct ContentView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NewButton()
                     }
-                }
+                } // TOOLBAR END
             }
         } // NAV END
         .environmentObject(itemDataBase)
@@ -71,7 +71,6 @@ struct ContentView: View {
             return selectedKeys
             }
         }
-
     }
 
 // MARK: NAVIGATION PAGE LINK

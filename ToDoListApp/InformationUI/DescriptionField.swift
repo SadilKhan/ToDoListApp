@@ -20,10 +20,11 @@ struct DescriptionField: View {
             TextEditor(text: $descriptionText)
                 .padding(10)
                 .overlay {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 30)
                         .stroke(ColorsDB().strokeColorDescriptionField)
             }
                 .padding()
+                
         }
     }
 }
