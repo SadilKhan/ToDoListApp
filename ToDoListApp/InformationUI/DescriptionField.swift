@@ -21,7 +21,7 @@ struct DescriptionField: View {
                 .padding(10)
                 .overlay {
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray)
+                        .stroke(ColorsDB().strokeColorDescriptionField)
             }
                 .padding()
         }

@@ -5,6 +5,7 @@ import SwiftUI
 /// Contains a Text view and Text Field View
 ///
 struct TitleTextField: View {
+    @Binding var defaultTitleText:String
     @Binding var titleText: String
     var body: some View {
         VStack {
@@ -15,7 +16,7 @@ struct TitleTextField: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 10)
             // TextField for adding title
-            TextField("Type Something Here", text: $titleText)
+            TextField(defaultTitleText, text: $titleText)
                 .padding()
                 .background(Color.gray.opacity(0.1).cornerRadius(10))
                 .padding(.horizontal, 10)

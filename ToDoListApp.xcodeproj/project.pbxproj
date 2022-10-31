@@ -17,6 +17,7 @@
 		8A3CF29E290FA603002A4161 /* TitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF29D290FA603002A4161 /* TitleTextField.swift */; };
 		8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF29F290FA86B002A4161 /* DescriptionField.swift */; };
 		8A3CF2A3290FB14D002A4161 /* ItemDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF2A2290FB14D002A4161 /* ItemDB.swift */; };
+		8A3CF2A6290FD59C002A4161 /* ColorsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF2A5290FD59C002A4161 /* ColorsDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		8A3CF29D290FA603002A4161 /* TitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextField.swift; sourceTree = "<group>"; };
 		8A3CF29F290FA86B002A4161 /* DescriptionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionField.swift; sourceTree = "<group>"; };
 		8A3CF2A2290FB14D002A4161 /* ItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDB.swift; sourceTree = "<group>"; };
+		8A3CF2A5290FD59C002A4161 /* ColorsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		8A3CF286290FA22C002A4161 /* ToDoListApp */ = {
 			isa = PBXGroup;
 			children = (
+				8A3CF2A4290FD581002A4161 /* Utils */,
 				8A3CF287290FA22C002A4161 /* ToDoListAppApp.swift */,
 				8A3CF289290FA22C002A4161 /* ContentView.swift */,
 				8A3CF295290FA47B002A4161 /* MenuView.swift */,
@@ -99,6 +102,14 @@
 				8A3CF2A2290FB14D002A4161 /* ItemDB.swift */,
 			);
 			path = ItemData;
+			sourceTree = "<group>";
+		};
+		8A3CF2A4290FD581002A4161 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8A3CF2A5290FD59C002A4161 /* ColorsDB.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +189,7 @@
 				8A3CF2A3290FB14D002A4161 /* ItemDB.swift in Sources */,
 				8A3CF288290FA22C002A4161 /* ToDoListAppApp.swift in Sources */,
 				8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */,
+				8A3CF2A6290FD59C002A4161 /* ColorsDB.swift in Sources */,
 				8A3CF29A290FA4F6002A4161 /* ItemInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
