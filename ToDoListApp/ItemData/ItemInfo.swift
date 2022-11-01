@@ -10,14 +10,16 @@ class ToDoItem: Identifiable {
     // MARK: Properties
     private var titleText: String
     private var descriptionText: String
-    private var date: Date
+    private var date:Date
     var isDone: Bool = false
+    
 
     init(titleText: String, descriptionText: String, date: Date) {
         self.titleText = titleText
         self.descriptionText = descriptionText
-        self.date = date
+        self.date=date
     }
+    
     // MARK: Methods
     func getTitleText() -> String {
         return titleText

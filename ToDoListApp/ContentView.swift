@@ -10,7 +10,10 @@ struct ContentView: View {
     @State var searchText: String = ""
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/YY"
+        //formatter.dateFormat = "dd/MM/YY"
+        //formatter.dateStyle = .long
+        formatter.locale=Locale(identifier: "en-US")
+        formatter.setLocalizedDateFormatFromTemplate("YYYYMMMMd")
         return formatter
     }
     //@State var isUndoDisabled:Bool
@@ -20,12 +23,13 @@ struct ContentView: View {
                 Text("Add a new Item")
                     .font(.title2)
                     .fontWeight(.light)
-                //.shadow(radius: 5,x: 5,y: 5)
                 List { // LIST START
+                    // Section start for Date
                     ForEach(Array(searchResults.keys), id: \.self) {
                         key in
-                        if let val = searchResults[key], val.count > 0
+                        if let val = searchResults[key]
                         {
+                            // Section Start for Items under the date
                             Section {
                                 ForEach(Array(val.keys), id: \.self) { key in
                                     NextPageNavLink(key: key)
@@ -33,8 +37,8 @@ struct ContentView: View {
                                     .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, key) })
 
                             } header: {
-                                Text(dateFormatter.string(from: key))
-                                    .font(.body)
+                                Text(key)
+                                    .font(.caption)
                                     .foregroundColor(.blue)
                             } footer: {
                                 Text(val.count > 1 ? "\(val.count) items" : "\(val.count) item")
@@ -81,8 +85,8 @@ struct ContentView: View {
 //        self._isUndoDisabled = State(initialValue: true)
 //    }
 
-    var searchResults: [Date: [String: ToDoItem]] {
-        var selectedKeys: [Date: [String: ToDoItem]] = [:]
+    var searchResults: [String: [String: ToDoItem]] {
+        var selectedKeys: [String: [String: ToDoItem]] = [:]
         var temp: [String: ToDoItem] = [:]
         if searchText.isEmpty {
             return itemDataBase.dateMapped
@@ -187,6 +191,8 @@ struct UpdateButton: View {
 // MARK: ITEM LIST
 
 /// The item lists that will be shown on the main page
+///
+/// The view takes a key as a parameter
 /// - Parameters
 ///    - key: String
 struct ItemList: View {
@@ -194,36 +200,24 @@ struct ItemList: View {
     @EnvironmentObject var itemDataBase: ItemDB
     @State var isDone: Bool = false
     var body: some View {
-        HStack {
-            Circle()
-                .fill(itemDataBase.allColors[key] != nil ? itemDataBase.allColors[key]! : Color.primary)
-                .frame(width: 35, height: 35)
-            Toggle(isOn: $isDone) {
-                VStack(alignment: .leading) {
-                    Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getTitleText() : "")
-                        .font(.body)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                    Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getDecriptionText() : "")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .frame(maxHeight: 10, alignment: .leading)
-                }
-            }
-                .onChange(of: isDone) { newValue in
-                itemDataBase.allDone[key] = newValue
-            }
+        Toggle(isOn: $isDone) {
+            Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getTitleText() : "")
+                .font(.body)
+                .fontWeight(.medium)
+                .foregroundColor(.primary)
+//                Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getDecriptionText() : "")
+//                    .font(.caption)
+//                    .foregroundColor(.secondary)
         }
-//            .padding(.vertical, 10)
-//        .padding(10)
-//        .background(ColorsDB().bgColorItemList.opacity(0.1).cornerRadius(20))
-//            .padding(.horizontal,10)
+            .toggleStyle(CheckToggleStyle())
+            .onChange(of: isDone) { newValue in
+            itemDataBase.allDone[key] = newValue
+        }
     }
 
     init(key: String) {
         self.key = key
     }
-
 }
 
 
