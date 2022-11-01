@@ -21,6 +21,7 @@ struct InformationView: View {
     @State var descriptionText: String
     @State var selectedDate: Date
     @State var typeSelected: String
+    @State var showAlert: Bool = false
     var id: String = ""
     @EnvironmentObject var itemDataBase: ItemDB
     @Environment(\.dismiss) private var dismiss
@@ -38,15 +39,21 @@ struct InformationView: View {
             DateField(selectedDate: $selectedDate)
             // Save Button
             Button {
-                if itemDataBase.allItems[self.id] != nil {
-                    let _ = print(descriptionText)
-                    itemDataBase.updateItem(self.id, item: ToDoItem(titleText: self.titleText, descriptionText: self.descriptionText, type: self.typeSelected, date: self.selectedDate))
+                if self.titleText.count > 1 {
+                    if itemDataBase.allItems[self.id] != nil {
+                        let _ = print(descriptionText)
+                        itemDataBase.updateItem(self.id, item: ToDoItem(titleText: self.titleText, descriptionText: self.descriptionText, type: self.typeSelected, date: self.selectedDate))
+                    } else {
+                        itemDataBase.appendItem(ToDoItem(titleText: titleText,
+                            descriptionText: descriptionText, type: typeSelected,
+                            date: selectedDate))
+                    }
+                    showAlert = false
+                    dismiss()
+
                 } else {
-                    itemDataBase.appendItem(ToDoItem(titleText: titleText,
-                        descriptionText: descriptionText, type: typeSelected,
-                        date: selectedDate))
+                    showAlert = true
                 }
-                dismiss()
             } label: {
                 Text("Save")
                     .padding()
@@ -54,6 +61,9 @@ struct InformationView: View {
                     .background(Color.blue.cornerRadius(10))
                     .padding()
                     .foregroundColor(.white)
+            }
+                .alert(isPresented: $showAlert) {
+                    getAlert()
             }
         }
     }
@@ -76,6 +86,17 @@ struct InformationView: View {
         self._typeSelected = State(initialValue: item.getType())
         self.id = key
     }
+
+    init(date: Date) {
+        self._defaultTitleText = State(initialValue: "Write Something Here")
+        self._titleText = State(initialValue: "")
+        self._descriptionText = State(initialValue: "")
+        self._selectedDate = State(initialValue: date)
+        self._typeSelected = State(initialValue: "Personal")
+    }
+    
+    
+    
 
 }
 

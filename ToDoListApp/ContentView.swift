@@ -10,7 +10,7 @@ struct ContentView: View {
     @StateObject var itemDataBase: ItemDB = ItemDB()
     @State var toUpdate: Bool = false
     @State var searchText: String = ""
-    
+
     // MARK: BODY
     var body: some View {
         NavigationView { // NAV START
@@ -20,29 +20,42 @@ struct ContentView: View {
                     .fontWeight(.light)
                 List { // LIST START
                     // Section start for Date
-                    ForEach(Array(searchResults.keys).sorted(), id: \.self) {
+                    ForEach(sortDateKeys(searchResults), id: \.self) {
                         dateKey in
                         if let val = searchResults[dateKey]
                         {
-                            // Section Start for Items under the date
+                            let _ = print(Array(searchResults.keys).sorted())
+                            let sortedValKeys = sortKeysByDone(val, itemDataBase.allDone)
+                            // SECTION START FOR ITEMS BELONGING TO A DATE
                             Section {
-                                ForEach(Array(val.keys), id: \.self) { key in
+                                ForEach(sortedValKeys, id: \.self) { key in
                                     NextPageNavLink(key: key)
                                 }
-                                    .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, dateKey) })
+                                    .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys) })
 
                             } header: {
-                                Text(
-                                    String(dateKey)
-                                )
-                                    .textCase(nil)
-                                    .font(.caption)
-                                    .foregroundColor(Color.blue)
+                                HStack {
+                                    Text(
+                                        String(dateKey)
+                                    )
+                                        .textCase(nil)
+                                        .font(.caption)
+                                        .foregroundColor(Color.blue)
+                                    // Add a plus button beside every date
+                                    NavigationLink {
+                                        InformationView(date: val[sortedValKeys[0]] != nil ? val[sortedValKeys[0]]!.getDate() : Date())
+                                    } label: {
+                                        Image(systemName: "plus.circle.fill")
+                                            .foregroundColor(Color.orange)
+                                    }
+
+
+                                }
                             } footer: {
                                 Text(val.count > 1 ? "\(val.count) items" : "\(val.count) item")
                                     .font(.caption)
                                     .foregroundColor(Color.secondary)
-                            }
+                            } // SECTION END
                         }
                     }
                         .onChange(of: toUpdate) { _ in
@@ -64,11 +77,11 @@ struct ContentView: View {
                     }
                     // Add Undo for new items
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        HelpButton()
+                        UndoButton()
                     }
                     // Add Undo for new items
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        UndoButton()
+                        HelpButton()
                     }
                     // Add Button for new items
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -184,7 +197,6 @@ struct UpdateButton: View {
         } label: {
             Text("Update")
         }
-
     }
 }
 

@@ -66,15 +66,13 @@ class ItemDB: ObservableObject {
     /// Deletes an item from database and updates accordingly
     /// - Parameter index: an IndexSet
     /// - Parameter key: The Date key string
-    func deleteItem(_ index: IndexSet, _ key: String) {
+    func deleteItem(_ index: IndexSet, _ dateKey: String, _ sortedValKeys: [String]) {
 
         index.forEach { i in
             var j: Int = 0
-            if let arr = dateMapped[key] {
-                j = findKeyIndex(arr.keys[arr.index(arr.startIndex, offsetBy: i)])
-            }
+            j = findKeyIndex(sortedValKeys[i])
             addDeletedItem(j)
-            deleteDateMap(key, allKeys[j])
+            deleteDateMap(dateKey, allKeys[j])
             allItems.removeValue(forKey: allKeys[j])
             allColors.removeValue(forKey: allKeys[j])
             allDone.removeValue(forKey: allKeys[j])
