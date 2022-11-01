@@ -9,9 +9,9 @@ class ItemDB: ObservableObject {
     @Published var allColors: [String: Color] = [:]
     @Published var allDone: [String: Bool] = [:]
     @Published var dateMapped: [String: [String: ToDoItem]] = [:]
-    private var dateFormatter:DateFormatter {
-        let formatter=DateFormatter()
-        formatter.locale=Locale(identifier: "en-US")
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en-US")
         formatter.setLocalizedDateFormatFromTemplate("YYYYMMMMd")
         return formatter
     }
@@ -36,7 +36,7 @@ class ItemDB: ObservableObject {
     ///   - key: String
     func updateDateMap(_ item: ToDoItem, _ key: String) {
         // Update date mapped dictionary
-        let dateKey=dateFormatter.string(from: item.getDate())
+        let dateKey = dateToString(item.getDate())
         if var arr = dateMapped[dateKey] {
             arr[key] = item
             dateMapped[dateKey] = arr
@@ -54,7 +54,7 @@ class ItemDB: ObservableObject {
     func updateItem(_ key: String, item: ToDoItem) {
         // Delete the old Value
         if let val = allItems[key] {
-            deleteDateMap(dateFormatter.string(from: val.getDate()), key)
+            deleteDateMap(dateToString(val.getDate()), key)
         }
         // Update the allItems Value
         allItems[key] = item
@@ -62,20 +62,6 @@ class ItemDB: ObservableObject {
         updateDateMap(item, key)
         //sortDateMap()
     }
-
-//    func sortDateMap(){
-//        dateMapped=dateMapped.sorted(by: {(s1,s2) -> Bool in s1.0>=s2.0})
-//    }
-//
-
-//    init(){
-//        allItems["1"]=ToDoItem(titleText: "1.Grocery", descriptionText: "Nothn", date: "2022-12-1")
-//        allItems["2"]=ToDoItem(titleText: "2.Study", descriptionText: "I have to study this and that I have to study this and that I have to study this and that I have to study this and that I have to study this and that", date: "2022-12-1")
-//        allItems["3"]=ToDoItem(titleText: "3.Cleaning", descriptionText: "Nothn", date: "2022-12-1")
-//        allKeys.append("1")
-//        allKeys.append("2")
-//        allKeys.append("3")
-//    }
 
     /// Deletes an item from database and updates accordingly
     /// - Parameter index: an IndexSet
@@ -116,7 +102,7 @@ class ItemDB: ObservableObject {
                 if val {
                     addDeletedItem(i)
                     if let item = allItems[allKeys[i]] {
-                        deleteDateMap(dateFormatter.string(from: item.getDate()), allKeys[i])
+                        deleteDateMap(dateToString(item.getDate()), allKeys[i])
                     }
                     allItems.removeValue(forKey: allKeys[i])
                     allColors.removeValue(forKey: allKeys[i])

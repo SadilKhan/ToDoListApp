@@ -4,19 +4,14 @@ import SwiftUI
 
 // MARK: MAIN PAGE
 struct ContentView: View {
+
+    // MARK: PROPERTIES
     let navTitle: String = "Todos"
     @StateObject var itemDataBase: ItemDB = ItemDB()
     @State var toUpdate: Bool = false
     @State var searchText: String = ""
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        //formatter.dateFormat = "dd/MM/YY"
-        //formatter.dateStyle = .long
-        formatter.locale=Locale(identifier: "en-US")
-        formatter.setLocalizedDateFormatFromTemplate("YYYYMMMMd")
-        return formatter
-    }
-    //@State var isUndoDisabled:Bool
+    
+    // MARK: BODY
     var body: some View {
         NavigationView { // NAV START
             ZStack {
@@ -25,21 +20,24 @@ struct ContentView: View {
                     .fontWeight(.light)
                 List { // LIST START
                     // Section start for Date
-                    ForEach(Array(searchResults.keys), id: \.self) {
-                        key in
-                        if let val = searchResults[key]
+                    ForEach(Array(searchResults.keys).sorted(), id: \.self) {
+                        dateKey in
+                        if let val = searchResults[dateKey]
                         {
                             // Section Start for Items under the date
                             Section {
                                 ForEach(Array(val.keys), id: \.self) { key in
                                     NextPageNavLink(key: key)
                                 }
-                                    .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, key) })
+                                    .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, dateKey) })
 
                             } header: {
-                                Text(key)
+                                Text(
+                                    String(dateKey)
+                                )
+                                    .textCase(nil)
                                     .font(.caption)
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(Color.blue)
                             } footer: {
                                 Text(val.count > 1 ? "\(val.count) items" : "\(val.count) item")
                                     .font(.caption)
@@ -158,6 +156,8 @@ struct AddButton: View {
     }
 }
 
+
+/// Undo function which adds the deleted items
 struct UndoButton: View {
 //    @Binding var isUndoDisabled: Bool
     @EnvironmentObject var itemDataBase: ItemDB
@@ -200,18 +200,28 @@ struct ItemList: View {
     @EnvironmentObject var itemDataBase: ItemDB
     @State var isDone: Bool = false
     var body: some View {
-        Toggle(isOn: $isDone) {
+        HStack {
+            Toggle(isOn: $isDone) {
+            }
+                .toggleStyle(CheckToggleStyle())
+                .onChange(of: isDone) { newValue in
+                itemDataBase.allDone[key] = newValue
+            }
             Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getTitleText() : "")
+                .strikethrough(isDone)
                 .font(.body)
-                .fontWeight(.medium)
-                .foregroundColor(.primary)
-//                Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getDecriptionText() : "")
-//                    .font(.caption)
-//                    .foregroundColor(.secondary)
-        }
-            .toggleStyle(CheckToggleStyle())
-            .onChange(of: isDone) { newValue in
-            itemDataBase.allDone[key] = newValue
+            //.fontWeight(.medium)
+            .foregroundColor(.primary)
+            Spacer()
+            HStack {
+                Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType() : "")
+                    .font(.caption)
+                    .fontWeight(.light)
+
+                Circle()
+                    .fill(itemDataBase.allItems[key] != nil ? colorForType(itemDataBase.allItems[key]!.getType()) : colorForType(""))
+                    .frame(width: 10, height: 10)
+            }
         }
     }
 

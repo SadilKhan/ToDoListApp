@@ -20,6 +20,7 @@ struct InformationView: View {
     @State var titleText: String
     @State var descriptionText: String
     @State var selectedDate: Date
+    @State var typeSelected: String
     var id: String = ""
     @EnvironmentObject var itemDataBase: ItemDB
     @Environment(\.dismiss) private var dismiss
@@ -31,18 +32,18 @@ struct InformationView: View {
             TitleTextField(defaultTitleText: $defaultTitleText, titleText: $titleText)
             // Description Field
             DescriptionField(descriptionText: $descriptionText)
+            //Type Field
+            PickerField(selection: $typeSelected)
             // Date Field
             DateField(selectedDate: $selectedDate)
             // Save Button
             Button {
                 if itemDataBase.allItems[self.id] != nil {
-                    itemDataBase.updateItem(self.id, item: ToDoItem(titleText: self.titleText,
-                        descriptionText: self.descriptionText,
-                        date: self.selectedDate))
-
+                    let _ = print(descriptionText)
+                    itemDataBase.updateItem(self.id, item: ToDoItem(titleText: self.titleText, descriptionText: self.descriptionText, type: self.typeSelected, date: self.selectedDate))
                 } else {
                     itemDataBase.appendItem(ToDoItem(titleText: titleText,
-                        descriptionText: descriptionText,
+                        descriptionText: descriptionText, type: typeSelected,
                         date: selectedDate))
                 }
                 dismiss()
@@ -64,6 +65,7 @@ struct InformationView: View {
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
         self._selectedDate = State(initialValue: Date())
+        self._typeSelected = State(initialValue: "Personal")
     }
 
     init(key: String, item: ToDoItem) {
@@ -71,6 +73,7 @@ struct InformationView: View {
         self._titleText = State(initialValue: item.getTitleText())
         self._descriptionText = State(initialValue: item.getDecriptionText())
         self._selectedDate = State(initialValue: item.getDate())
+        self._typeSelected = State(initialValue: item.getType())
         self.id = key
     }
 

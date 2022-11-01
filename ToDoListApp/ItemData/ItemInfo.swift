@@ -10,16 +10,18 @@ class ToDoItem: Identifiable {
     // MARK: Properties
     private var titleText: String
     private var descriptionText: String
-    private var date:Date
+    private var date: Date
     var isDone: Bool = false
-    
+    private var type: String
 
-    init(titleText: String, descriptionText: String, date: Date) {
+
+    init(titleText: String, descriptionText: String, type: String, date: Date) {
         self.titleText = titleText
         self.descriptionText = descriptionText
-        self.date=date
+        self.type = type
+        self.date = date
     }
-    
+
     // MARK: Methods
     func getTitleText() -> String {
         return titleText
@@ -31,19 +33,7 @@ class ToDoItem: Identifiable {
     func getDate() -> Date {
         return date
     }
-
-
-//    func updateInfo(_ titleText: String?, _ descriptionText: String?, _ date: Date?){
-//        if let _ = titleText {
-//            self.titleText=titleText!
-//        }
-//
-//        if let _ = descriptionText {
-//            self.descriptionText = descriptionText!
-//        }
-//
-//        if let _ = date {
-//            self.date = date!
-//        }
-//    }
+    func getType() -> String {
+        return type
+    }
 }

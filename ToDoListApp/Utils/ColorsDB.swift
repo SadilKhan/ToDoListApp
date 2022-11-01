@@ -20,3 +20,19 @@ func randomColorChooser() -> Color {
     let randomIndex = Int(arc4random_uniform(UInt32(allColors.count)))
     return allColors[randomIndex]
 }
+
+
+func colorForType(_ type:String) -> Color {
+    
+    switch type {
+    case "Personal":
+        return Color.blue
+    case "Work":
+        return Color.green
+    case "Misc":
+        return Color.orange
+    default:
+        return Color.primary
+    }
+    
+}
