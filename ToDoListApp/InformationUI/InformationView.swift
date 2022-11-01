@@ -36,9 +36,13 @@ struct InformationView: View {
             // Save Button
             Button {
                 if itemDataBase.allItems[self.id] != nil {
-                    itemDataBase.allItems[self.id] = ToDoItem(titleText: self.titleText,
+//                    itemDataBase.allItems[self.id] = ToDoItem(titleText: self.titleText,
+//                        descriptionText: self.descriptionText,
+//                        date: self.selectedDate)
+                    itemDataBase.updateItem(self.id, item: ToDoItem(titleText: self.titleText,
                         descriptionText: self.descriptionText,
-                        date: self.selectedDate)
+                        date: self.selectedDate))
+
                 } else {
                     itemDataBase.appendItem(ToDoItem(titleText: titleText,
                         descriptionText: descriptionText,
