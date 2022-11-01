@@ -72,11 +72,11 @@ class ItemDB: ObservableObject {
     /// Deletes an item from database and updates accordingly
     /// - Parameter index: an IndexSet
     func deleteItem(_ index: IndexSet, _ key: Date) {
-        
+
         index.forEach { i in
-            var j:Int=0
-            if let arr = dateMapped[key]{
-                j=findKeyIndex(arr.keys[arr.index(arr.startIndex,offsetBy: i)])
+            var j: Int = 0
+            if let arr = dateMapped[key] {
+                j = findKeyIndex(arr.keys[arr.index(arr.startIndex, offsetBy: i)])
             }
             addDeletedItem(j)
             deleteDateMap(key, allKeys[j])
@@ -87,13 +87,13 @@ class ItemDB: ObservableObject {
         }
         //sortDateMap()
     }
-    
+
     /// Find the index given the key
     /// - Parameter key: String
     /// - Returns: Returns an Integer
-    func findKeyIndex(_ key:String) -> Int {
-        for i in 0..<allKeys.count{
-            if key==allKeys[i]{
+    func findKeyIndex(_ key: String) -> Int {
+        for i in 0..<allKeys.count {
+            if key == allKeys[i] {
                 return i
             }
         }

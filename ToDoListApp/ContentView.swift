@@ -20,7 +20,7 @@ struct ContentView: View {
                 Text("Add a new Item")
                     .font(.title2)
                     .fontWeight(.light)
-                    //.shadow(radius: 5,x: 5,y: 5)
+                //.shadow(radius: 5,x: 5,y: 5)
                 List { // LIST START
                     ForEach(Array(searchResults.keys), id: \.self) {
                         key in
@@ -30,21 +30,24 @@ struct ContentView: View {
                                 ForEach(Array(val.keys), id: \.self) { key in
                                     NextPageNavLink(key: key)
                                 }
-                                .onDelete(perform: {indexSet in itemDataBase.deleteItem(indexSet,key)})
+                                    .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, key) })
 
                             } header: {
-                                HStack {
-                                    Text(dateFormatter.string(from: key))
-                                }
+                                Text(dateFormatter.string(from: key))
+                                    .font(.body)
+                                    .foregroundColor(.blue)
+                            } footer: {
+                                Text(val.count > 1 ? "\(val.count) items" : "\(val.count) item")
+                                    .font(.caption)
+                                    .foregroundColor(Color.secondary)
                             }
                         }
                     }
-                        
                         .onChange(of: toUpdate) { _ in
                         itemDataBase.deleteItemDone()
                     }
                 } // LIST END
-                .listStyle(.grouped)
+                .listStyle(SidebarListStyle())
                 // Navigation Bar Customization
                 .searchable(text: $searchText)
                     .navigationTitle(navTitle)

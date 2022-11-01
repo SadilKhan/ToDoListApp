@@ -5,7 +5,7 @@ import SwiftUI
 /// Contains a Text view and Text Field View
 ///
 struct TitleTextField: View {
-    @Binding var defaultTitleText:String
+    @Binding var defaultTitleText: String
     @Binding var titleText: String
     var body: some View {
         VStack {
