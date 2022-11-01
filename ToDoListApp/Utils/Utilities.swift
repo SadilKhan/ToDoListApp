@@ -70,16 +70,18 @@ func sortKeysByDone(_ itemDict: [String: ToDoItem], _ allDone: [String: Bool]) -
 
 /// Gets an alert with a specified title
 ///
-///This functions creates and returns an alert immediately. This alert will have a title on the text parameter but it will not have a message
+///This functions creates and returns an alert when save button is clicked with an empty title
 ///  ```
-///  getAlert() -> Alert(title: Text("No Characters in Title"), dismissButton: .cancel())
+///  getAlert() -> Alert(title: Text("Empty Title Field"),
+///                   message: Text("Enter something in Title"),
+///                   dismissButton: .cancel())
 ///  ```
 /// - Warning: There is no additional message in this alert
 /// - Returns: Returns an alert with a title
 func getAlert() -> Alert {
 
-    return Alert(title: Text("No Characters in Title"),
-        message: Text("Enter at least one letter in Title"),
+    return Alert(title: Text("Empty Title Field"),
+        message: Text("Enter something in Title"),
         dismissButton: .cancel())
 }
 
@@ -101,6 +103,9 @@ func dateSortMethod(_ value1:[String:ToDoItem],_ value2:[String:ToDoItem]) -> Bo
     return false
 }
 
+/// Sort the dictionary by date
+/// - Parameter dateDict: A [String:[String:ToDoItem]] dictionary
+/// - Returns: Returns the keys of the sorted dictionary
 func sortDateKeys(_ dateDict:[String:[String:ToDoItem]]) -> [String]{
     
     var sortedKeys:[String]=[]

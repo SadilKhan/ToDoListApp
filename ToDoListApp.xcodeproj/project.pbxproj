@@ -21,6 +21,9 @@
 		8AF401AE29113C3300B9906F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401AD29113C3300B9906F /* Style.swift */; };
 		8AF401B02911574F00B9906F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401AF2911574F00B9906F /* Utilities.swift */; };
 		8AF401B22911629400B9906F /* PickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B12911629300B9906F /* PickerField.swift */; };
+		8AF401B52911ADC900B9906F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B42911ADC900B9906F /* HomeView.swift */; };
+		8AF401B72911AE1B00B9906F /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B62911AE1B00B9906F /* HomeButton.swift */; };
+		8AF401BA2911AF0F00B9906F /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B92911AF0F00B9906F /* AnalyticsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		8AF401AD29113C3300B9906F /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		8AF401AF2911574F00B9906F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8AF401B12911629300B9906F /* PickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerField.swift; sourceTree = "<group>"; };
+		8AF401B42911ADC900B9906F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8AF401B62911AE1B00B9906F /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
+		8AF401B92911AF0F00B9906F /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +78,11 @@
 		8A3CF286290FA22C002A4161 /* ToDoListApp */ = {
 			isa = PBXGroup;
 			children = (
+				8AF401B82911AEFC00B9906F /* AnalyticsUI */,
 				8A3CF2A4290FD581002A4161 /* Utils */,
 				8A3CF287290FA22C002A4161 /* ToDoListAppApp.swift */,
 				8A3CF289290FA22C002A4161 /* ContentView.swift */,
+				8AF401B32911ADBB00B9906F /* HomeUI */,
 				8A3CF29C290FA5CC002A4161 /* InformationUI */,
 				8A3CF2A1290FB10E002A4161 /* ItemData */,
 				8A3CF28B290FA22E002A4161 /* Assets.xcassets */,
@@ -121,6 +129,23 @@
 				8AF401AF2911574F00B9906F /* Utilities.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		8AF401B32911ADBB00B9906F /* HomeUI */ = {
+			isa = PBXGroup;
+			children = (
+				8AF401B42911ADC900B9906F /* HomeView.swift */,
+				8AF401B62911AE1B00B9906F /* HomeButton.swift */,
+			);
+			path = HomeUI;
+			sourceTree = "<group>";
+		};
+		8AF401B82911AEFC00B9906F /* AnalyticsUI */ = {
+			isa = PBXGroup;
+			children = (
+				8AF401B92911AF0F00B9906F /* AnalyticsView.swift */,
+			);
+			path = AnalyticsUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +220,8 @@
 			files = (
 				8A3CF29E290FA603002A4161 /* TitleTextField.swift in Sources */,
 				8A3CF28A290FA22C002A4161 /* ContentView.swift in Sources */,
+				8AF401B52911ADC900B9906F /* HomeView.swift in Sources */,
+				8AF401BA2911AF0F00B9906F /* AnalyticsView.swift in Sources */,
 				8AF401B02911574F00B9906F /* Utilities.swift in Sources */,
 				8A3CF298290FA493002A4161 /* InformationView.swift in Sources */,
 				8A3CF2A3290FB14D002A4161 /* ItemDB.swift in Sources */,
@@ -202,6 +229,7 @@
 				8AF401B22911629400B9906F /* PickerField.swift in Sources */,
 				8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */,
 				8A3CF2A6290FD59C002A4161 /* ColorsDB.swift in Sources */,
+				8AF401B72911AE1B00B9906F /* HomeButton.swift in Sources */,
 				8AC0FAF02910069B00F52FD9 /* DateField.swift in Sources */,
 				8A3CF29A290FA4F6002A4161 /* ItemInfo.swift in Sources */,
 				8AF401AE29113C3300B9906F /* Style.swift in Sources */,
@@ -345,7 +373,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2.1;
+				MARKETING_VERSION = 3.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.student.ToDoListApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -374,7 +402,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2.1;
+				MARKETING_VERSION = 3.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.student.ToDoListApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
