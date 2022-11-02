@@ -79,3 +79,20 @@ struct UpdateButton: View {
     }
 }
 
+
+/// Adds a back button on the information page
+struct BackButton: View {
+    @Binding var presentationMode: PresentationMode
+    var body: some View {
+        Button {
+            $presentationMode.wrappedValue.dismiss()
+        } label: {
+            HStack {
+                Image(systemName: "chevron.backward.circle")
+                Text("Back")
+                    .fontWeight(.medium)
+            }
+        }
+
+    }
+}

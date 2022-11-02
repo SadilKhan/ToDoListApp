@@ -25,21 +25,25 @@ struct InformationView: View {
     var id: String = ""
     @EnvironmentObject var itemDataBase: ItemDB
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
 
     // MARK: BODY
     var body: some View {
         VStack {
+            Spacer()
             // Title Text
             TitleTextField(defaultTitleText: $defaultTitleText, titleText: $titleText)
             // Description Field
             DescriptionField(descriptionText: $descriptionText)
             //Type Field
+            Divider()
             PickerField(selection: $typeSelected)
             // Date Field
+            Divider()
             DateField(selectedDate: $selectedDate)
             // Save Button
             Button {
-                if self.titleText.count > 1 {
+                if self.titleText.count > 0 {
                     if itemDataBase.allItems[self.id] != nil {
                         let _ = print(descriptionText)
                         itemDataBase.updateItem(self.id, item: ToDoItem(titleText: self.titleText, descriptionText: self.descriptionText, type: self.typeSelected, date: self.selectedDate))
@@ -63,15 +67,22 @@ struct InformationView: View {
                     .foregroundColor(.white)
             }
                 .alert(isPresented: $showAlert) {
-                    getAlert()
+                getAlert()
             }
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden()
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        BackButton(presentationMode: presentationMode)
+                    }
+                }
         }
     }
 
     // MARK: CONSTRUCTOR
 
     init() {
-        self._defaultTitleText = State(initialValue: "Write Something Here")
+        self._defaultTitleText = State(initialValue: "Write Something Here ✍🏼")
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
         self._selectedDate = State(initialValue: Date())
@@ -94,9 +105,9 @@ struct InformationView: View {
         self._selectedDate = State(initialValue: date)
         self._typeSelected = State(initialValue: "Personal")
     }
-    
-    
-    
+
+
+
 
 }
 

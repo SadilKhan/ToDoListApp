@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct AnalyticsView: View {
+    @State var itemDataBase:ItemDB
     var body: some View {
         NavigationView {
-            ZStack {
-                Text("Nothing to show")
-                    .font(.title2)
-                    .fontWeight(.light)
-            }
+            ScrollView {
+                ZStack {
+//                    Text("Nothing to show")
+//                        .font(.title2)
+//                        .fontWeight(.light)
+                    BarChartView(itemDataBase)
+                }
                 .navigationTitle("Analytics")
+            }
         }
+    }
+    init(_ itemDataBase:ItemDB){
+        self.itemDataBase=itemDataBase
+    }
+    init(){
+        self.itemDataBase=ItemDB()
     }
 }
 

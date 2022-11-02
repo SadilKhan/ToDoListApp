@@ -11,9 +11,9 @@ struct DescriptionField: View {
         // 1. Add markdown support
         VStack {
             // Title Text
-            Text("Description")
-                .font(.title)
-                .fontWeight(.semibold)
+            Text("Note")
+                .font(.title2)
+                .fontWeight(.medium)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 10)
             // Text Editor for adding title

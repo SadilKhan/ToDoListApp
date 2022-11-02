@@ -13,23 +13,24 @@ struct ContentView: View {
         TabView { // TAB START
             HomeView()
                 .tabItem {
-                    VStack{
-                        Image(systemName: "house.fill")
-                        Text("Home")
-                    }
+                VStack {
+                    Image(systemName: "house.fill")
+                    Text("Home")
                 }
-            AnalyticsView()
+            }
+
+            AnalyticsView(itemDataBase)
                 .tabItem {
-                    VStack{
-                        Image(systemName: "chart.bar.fill")
-                        Text("Analytics")
-                    }
+                VStack {
+                    Image(systemName: "chart.bar.fill")
+                    Text("Analytics")
                 }
+            }
         } // TAB END
         .environmentObject(itemDataBase)
     }
-    
-    
+
+
 }
 
 

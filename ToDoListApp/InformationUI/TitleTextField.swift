@@ -11,8 +11,8 @@ struct TitleTextField: View {
         VStack {
             // Title Text
             Text("Title")
-                .font(.title)
-                .fontWeight(.semibold)
+                .font(.title2)
+                .fontWeight(.medium)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 10)
             // TextField for adding title

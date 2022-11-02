@@ -95,7 +95,7 @@ class ItemDB: ObservableObject {
 
     /// Deletes the items that has toggle on
     func deleteItemDone() {
-        for i in (0...(allKeys.count - 1)).reversed() {
+        for i in (0..<allKeys.count).reversed() {
             if let val = allDone[allKeys[i]] {
                 if val {
                     addDeletedItem(i)
