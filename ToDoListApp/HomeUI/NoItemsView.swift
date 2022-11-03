@@ -18,11 +18,11 @@ struct NoItemsView: View {
                     .fontWeight(.light)
                     .navigationTitle("Hey User")
 
-                NavigationLink {
-                    InformationView()
-                } label: {
-                    Text("Add Something")
-                }
+//                NavigationLink {
+//                    InformationView(ViewRouter)
+//                } label: {
+//                    Text("Add Something")
+//                }
 
             }
         }

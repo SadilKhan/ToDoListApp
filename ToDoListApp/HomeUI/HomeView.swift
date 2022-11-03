@@ -12,12 +12,17 @@ struct HomeView: View {
     @EnvironmentObject var itemDataBase: ItemDB
     @State var toUpdate: Bool = false
     @State var searchText: String = ""
+    @ObservedObject var viewRouter: ViewRouter
+    //@Environment(\.colorScheme) var colorScheme: ColorScheme
     var body: some View {
         NavigationView { // NAV START
             ZStack {
-                Text("Add a new Item")
-                    .font(.title2)
-                    .fontWeight(.light)
+                if itemDataBase.allItems.count == 0 {
+                    Text("Add a new Item")
+                        .font(.title2)
+                        .fontWeight(.light)
+                }
+
                 List { // LIST START
                     // Section start for Date
                     ForEach(sortDateKeys(searchResults), id: \.self) {
@@ -28,7 +33,8 @@ struct HomeView: View {
                             // SECTION START FOR ITEMS BELONGING TO A DATE
                             Section {
                                 ForEach(sortedValKeys, id: \.self) { key in
-                                    NextPageNavLink(key: key)
+                                    NextPageNavLink(key: key, viewRouter: viewRouter)
+                                    //.listRowBackground(ColorsDB().listItemColor.shadow(radius: 2).blur(radius: 2))
                                 }
                                     .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys) })
 
@@ -42,7 +48,7 @@ struct HomeView: View {
                                         .foregroundColor(Color.blue)
                                     // Add a plus button beside every date
                                     NavigationLink {
-                                        InformationView(date: val[sortedValKeys[0]] != nil ? val[sortedValKeys[0]]!.getDate() : Date())
+                                        InformationView(date: val[sortedValKeys[0]] != nil ? val[sortedValKeys[0]]!.getDate() : Date(), viewRouter)
                                     } label: {
                                         Image(systemName: "plus.circle.fill")
                                             .foregroundColor(Color.orange)
@@ -55,15 +61,20 @@ struct HomeView: View {
                                     .font(.caption)
                                     .foregroundColor(Color.secondary)
                             } // SECTION END
+                            .listRowSeparator(.hidden)
                         }
                     }
+
                         .onChange(of: toUpdate) { _ in
                         itemDataBase.deleteItemDone()
                     }
                 } // LIST END
-                .listStyle(SidebarListStyle())
+
+                    .listStyle(SidebarListStyle())
+                    .scrollContentBackground(.hidden)
+
                 // Navigation Bar Customization
-                .searchable(text: $searchText)
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
                     .navigationTitle(navTitle)
                     .toolbar { // TOOLBAR START
                     // Edit Button
@@ -84,11 +95,16 @@ struct HomeView: View {
                     }
                     // Add Button for new items
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        NewButton()
+                        NewButton(viewRouter: viewRouter)
                     }
                 } // TOOLBAR END
             }
+
+
+//            .ignoresSafeArea()
         } // NAV END
+
+
     }
 
     var searchResults: [String: [String: ToDoItem]] {
@@ -128,33 +144,54 @@ struct ItemList: View {
     var key: String
     @EnvironmentObject var itemDataBase: ItemDB
     @State var isDone: Bool = false
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     var body: some View {
-        HStack {
-            Toggle(isOn: $isDone) {
+        ZStack {
+            if colorScheme == .light {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(ColorsDB().listItemColor)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, -10)
+                    .padding(.trailing, -15)
+                    .padding(.vertical, -4)
+                    .shadow(radius: 3, y: 2)
+                    .opacity(0.5)
             }
-                .toggleStyle(CheckToggleStyle())
-                .onChange(of: isDone) { newValue in
-                itemDataBase.allDone[key] = newValue
-            }
-            Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getTitleText() : "")
-                .strikethrough(isDone)
-                .font(.body)
-            //.fontWeight(.medium)
-            .foregroundColor(.primary)
-            Spacer()
             HStack {
-                Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType() : "")
-                    .font(.caption)
-                    .fontWeight(.light)
+                Toggle(isOn: $isDone) {
+                }
+                    .toggleStyle(CheckToggleStyle())
+                    .onChange(of: isDone) { newValue in
+                    itemDataBase.allDone[key] = newValue
+                }
+                Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getTitleText() : "")
+                    .strikethrough(isDone)
+                    .font(.body)
+                //.fontWeight(.medium)
+                .foregroundColor(.primary)
+                Spacer()
+                HStack {
+                    Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType() : "")
+                        .font(.caption)
+                        .fontWeight(.light)
 
-                Circle()
-                    .fill(itemDataBase.allItems[key] != nil ? colorForType(itemDataBase.allItems[key]!.getType()) : colorForType(""))
-                    .frame(width: 10, height: 10)
+                    Circle()
+                        .fill(itemDataBase.allItems[key] != nil ? colorForType(itemDataBase.allItems[key]!.getType()) : colorForType(""))
+                        .frame(width: 10, height: 10)
+                }
             }
         }
+            .padding(.vertical, self.colorScheme == .light ? 10 : 0)
+//        .padding(.vertical,10)
+//        .padding(.horizontal,10)
+//        .background(ColorsDB().listItemColor
+//                .opacity(0.5)
+//                .blur(radius: 2)
+//                .cornerRadius(20))
     }
 
     init(key: String) {
         self.key = key
     }
+
 }

@@ -4,10 +4,11 @@ import SwiftUI
 struct NextPageNavLink: View {
     var key: String
     @EnvironmentObject var itemDataBase: ItemDB
+    @ObservedObject var viewRouter: ViewRouter
     var body: some View {
         NavigationLink {
             if let item = itemDataBase.allItems[key] {
-                InformationView(key: key, item: item)
+                InformationView(key: key, item: item, viewRouter)
             }
         } label: {
             ItemList(key: key)
@@ -18,9 +19,10 @@ struct NextPageNavLink: View {
 // MARK: NEW BUTTON
 /// New Button which opens InformationView Window
 struct NewButton: View {
+    @ObservedObject var viewRouter: ViewRouter
     var body: some View {
         NavigationLink {
-            InformationView()
+            InformationView(viewRouter)
         } label: {
             Image(systemName: "plus")
         }
@@ -39,9 +41,12 @@ struct HelpButton: View {
 // MARK: ADD BUTTON
 /// Opens a new window for adding an item
 struct AddButton: View {
+    @ObservedObject var viewRouter: ViewRouter
     var body: some View {
         NavigationLink {
-            InformationView()
+            withAnimation(.spring(response: 0.9, dampingFraction: 0.5)) {
+                InformationView(viewRouter)
+            }
         } label: {
             Image(systemName: "plus")
         }
@@ -83,8 +88,10 @@ struct UpdateButton: View {
 /// Adds a back button on the information page
 struct BackButton: View {
     @Binding var presentationMode: PresentationMode
+    @ObservedObject var viewRouter: ViewRouter
     var body: some View {
         Button {
+            viewRouter.showNavigator = true
             $presentationMode.wrappedValue.dismiss()
         } label: {
             HStack {

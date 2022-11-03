@@ -22,10 +22,12 @@ struct InformationView: View {
     @State var selectedDate: Date
     @State var typeSelected: String
     @State var showAlert: Bool = false
+    @State var isAnimated: Bool = false
+    @ObservedObject var viewRouter: ViewRouter
     var id: String = ""
     @EnvironmentObject var itemDataBase: ItemDB
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     // MARK: BODY
     var body: some View {
@@ -41,6 +43,7 @@ struct InformationView: View {
             // Date Field
             Divider()
             DateField(selectedDate: $selectedDate)
+
             // Save Button
             Button {
                 if self.titleText.count > 0 {
@@ -53,6 +56,7 @@ struct InformationView: View {
                             date: selectedDate))
                     }
                     showAlert = false
+                    viewRouter.showNavigator = true
                     dismiss()
 
                 } else {
@@ -72,38 +76,47 @@ struct InformationView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden()
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        BackButton(presentationMode: presentationMode)
-                    }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton(presentationMode: presentationMode, viewRouter: viewRouter)
                 }
+            }
+
         }
+            .onAppear {
+            self.viewRouter.showNavigator = false
+        }
+
     }
+
 
     // MARK: CONSTRUCTOR
 
-    init() {
+    init(_ viewRouter: ViewRouter) {
         self._defaultTitleText = State(initialValue: "Write Something Here ✍🏼")
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
         self._selectedDate = State(initialValue: Date())
         self._typeSelected = State(initialValue: "Personal")
+        self.viewRouter = viewRouter
     }
 
-    init(key: String, item: ToDoItem) {
+    init(key: String, item: ToDoItem, _ viewRouter: ViewRouter) {
         self._defaultTitleText = State(initialValue: item.getTitleText())
         self._titleText = State(initialValue: item.getTitleText())
         self._descriptionText = State(initialValue: item.getDecriptionText())
         self._selectedDate = State(initialValue: item.getDate())
         self._typeSelected = State(initialValue: item.getType())
         self.id = key
+        self.viewRouter = viewRouter
     }
 
-    init(date: Date) {
+    init(date: Date, _ viewRouter: ViewRouter) {
         self._defaultTitleText = State(initialValue: "Write Something Here")
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
         self._selectedDate = State(initialValue: date)
         self._typeSelected = State(initialValue: "Personal")
+        self.viewRouter = viewRouter
     }
 
 
@@ -113,6 +126,6 @@ struct InformationView: View {
 
 struct InformationView_Previews: PreviewProvider {
     static var previews: some View {
-        InformationView()
+        InformationView(ViewRouter())
     }
 }

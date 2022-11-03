@@ -10,23 +10,26 @@ import SwiftUI
 struct BarChartView: View {
     @State var itemDataBase: ItemDB
     var body: some View {
-            ZStack{
+        ZStack {
+            if itemDataBase.allItems.count == 0 {
                 Text("No Chart Available")
-                    .foregroundColor(itemDataBase.allItems.count>0 ? .white : .black)
+                    .foregroundColor(.primary)
                     .font(.title2)
                     .fontWeight(.light)
-                RoundedRectangle(cornerRadius: 30)
-                    .frame(width: 350,height: 400)
-                    .foregroundColor(.white.opacity(itemDataBase.allItems.count>0 ? 0.6 : 0))
-                    .shadow(radius: 5,y:10)
             }
+
+            RoundedRectangle(cornerRadius: 30)
+                .frame(width: 350, height: 400)
+                .foregroundColor(.white.opacity(itemDataBase.allItems.count > 0 ? 0.6 : 0))
+                .shadow(radius: 5, y: 10)
+        }
     }
-    
-    init(_ itemDataBase:ItemDB){
-        self.itemDataBase=itemDataBase
+
+    init(_ itemDataBase: ItemDB) {
+        self.itemDataBase = itemDataBase
     }
-    init(){
-        self.itemDataBase=ItemDB()
+    init() {
+        self.itemDataBase = ItemDB()
     }
 }
 
