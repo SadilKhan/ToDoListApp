@@ -16,95 +16,97 @@ struct HomeView: View {
     //@Environment(\.colorScheme) var colorScheme: ColorScheme
     var body: some View {
         NavigationView { // NAV START
-            ZStack {
-                if itemDataBase.allItems.count == 0 {
-                    Text("Add a new Item")
-                        .font(.title2)
-                        .fontWeight(.light)
-                }
-
-                List { // LIST START
-                    // Section start for Date
-                    ForEach(sortDateKeys(searchResults), id: \.self) {
-                        dateKey in
-                        if let val = searchResults[dateKey]
-                        {
-                            let sortedValKeys = sortKeysByDone(val, itemDataBase.allDone)
-                            // SECTION START FOR ITEMS BELONGING TO A DATE
-                            Section {
+            List { // LIST START
+                // Section start for Date
+                ForEach(sortDateKeys(searchResults), id: \.self) {
+                    dateKey in
+                    if let val = searchResults[dateKey], let showSection = self.itemDataBase.showSection[dateKey]
+                    {
+                        let sortedValKeys = sortKeysByDone(val, itemDataBase.allDone)
+                        // SECTION START FOR ITEMS BELONGING TO A DATE
+                        Section {
+                            if showSection {
                                 ForEach(sortedValKeys, id: \.self) { key in
                                     NextPageNavLink(key: key, viewRouter: viewRouter)
+                                        .transition(.move(edge: .trailing))
                                     //.listRowBackground(ColorsDB().listItemColor.shadow(radius: 2).blur(radius: 2))
                                 }
                                     .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys) })
-
-                            } header: {
-                                HStack {
-                                    Text(
-                                        String(dateKey)
-                                    )
-                                        .textCase(nil)
-                                        .font(.caption)
-                                        .foregroundColor(Color.blue)
-                                    // Add a plus button beside every date
-                                    NavigationLink {
-                                        InformationView(date: val[sortedValKeys[0]] != nil ? val[sortedValKeys[0]]!.getDate() : Date(), viewRouter)
-                                    } label: {
-                                        Image(systemName: "plus.circle.fill")
-                                            .foregroundColor(Color.orange)
-                                    }
-
-
+                            }
+                        } header: {
+                            HStack {
+                                // The Date Text
+                                Text(
+                                    String(dateKey)
+                                )
+                                    .textCase(nil)
+                                    .font(.body)
+                                    .foregroundColor(Color.blue)
+                                // Add a plus button beside every date
+                                NavigationLink {
+                                    InformationView(date: val[sortedValKeys[0]] != nil ? val[sortedValKeys[0]]!.getDate() : Date(), viewRouter)
+                                } label: {
+                                    Image(systemName: "plus.circle.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .foregroundColor(Color.orange)
                                 }
-                            } footer: {
-                                Text(val.count > 1 ? "\(val.count) items" : "\(val.count) item")
-                                    .font(.caption)
-                                    .foregroundColor(Color.secondary)
-                            } // SECTION END
-                            .listRowSeparator(.hidden)
-                        }
+                                Spacer()
+                                // The Collapse Key
+                                Button {
+                                    withAnimation(.easeInOut(duration: 0.5)) {
+                                        self.itemDataBase.toggleShowSection(dateKey)
+                                    }
+                                } label: {
+                                    Image(systemName: "greaterthan.circle.fill")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .foregroundColor(.orange)
+                                        .frame(width: 25, height: 25)
+                                        .rotationEffect(Angle(degrees: itemDataBase.showSection[dateKey] ?? false ? 90 : 0))
+                                }
+                            }
+                        } footer: {
+                            Text(val.count > 1 ? "\(val.count) items" : "\(val.count) item")
+                                .font(.caption)
+                                .foregroundColor(Color.secondary)
+                        } // SECTION END
+                        .listRowSeparator(.hidden)
                     }
+                }
+                    .onChange(of: toUpdate) { _ in
+                    itemDataBase.deleteItemDone()
+                }
+            } // LIST END
+            .listStyle(.plain)
+                .scrollContentBackground(.hidden)
 
-                        .onChange(of: toUpdate) { _ in
-                        itemDataBase.deleteItemDone()
-                    }
-                } // LIST END
-
-                    .listStyle(SidebarListStyle())
-                    .scrollContentBackground(.hidden)
-
-                // Navigation Bar Customization
-                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-                    .navigationTitle(navTitle)
-                    .toolbar { // TOOLBAR START
-                    // Edit Button
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        EditButton()
-                    }
-                    // Update Button
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        UpdateButton(toUpdate: $toUpdate)
-                    }
-                    // Add Undo for new items
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        UndoButton()
-                    }
-                    // Add Undo for new items
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        HelpButton()
-                    }
-                    // Add Button for new items
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NewButton(viewRouter: viewRouter)
-                    }
-                } // TOOLBAR END
-            }
-
-
-//            .ignoresSafeArea()
+            // Navigation Bar Customization
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+                .navigationTitle(navTitle)
+                .toolbar { // TOOLBAR START
+                // Edit Button
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+                // Update Button
+                ToolbarItem(placement: .navigationBarLeading) {
+                    UpdateButton(toUpdate: $toUpdate)
+                }
+                // Add Undo for new items
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    UndoButton()
+                }
+                // Add Undo for new items
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HelpButton()
+                }
+                // Add Button for new items
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NewButton(viewRouter: viewRouter)
+                }
+            } // TOOLBAR END
         } // NAV END
-
-
     }
 
     var searchResults: [String: [String: ToDoItem]] {
@@ -176,24 +178,27 @@ struct ItemList: View {
                     Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType() : "")
                         .font(.caption)
                         .fontWeight(.light)
-                    if itemDataBase.allItems[key] != nil{
+                    if itemDataBase.allItems[key] != nil {
                         colorForType(itemDataBase.allItems[key]!.getType())
                     }
-
-//                    Circle()
-//                        .stroke()
-//                        .overlay(itemDataBase.allItems[key] != nil ? colorForType(itemDataBase.allItems[key]!.getType()) : colorForType(""))
-//                        .frame(width: 10, height: 10)
                 }
             }
         }
+            .contextMenu {
+                // Duplicate Button
+            Button(action: {
+                if let item = itemDataBase.allItems[key]{
+                    withAnimation(.easeInOut(duration: 0.5)){
+                        self.itemDataBase.appendItem(item)
+                    }
+                }
+            }, label: {
+                    Text("Duplicate Task")
+                })
+        }
+        
             .padding(.vertical, self.colorScheme == .light ? 10 : 0)
-//        .padding(.vertical,10)
-//        .padding(.horizontal,10)
-//        .background(ColorsDB().listItemColor
-//                .opacity(0.5)
-//                .blur(radius: 2)
-//                .cornerRadius(20))
+
     }
 
     init(key: String) {

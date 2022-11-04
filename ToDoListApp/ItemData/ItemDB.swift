@@ -9,6 +9,7 @@ class ItemDB: ObservableObject {
     @Published var allColors: [String: Color] = [:]
     @Published var allDone: [String: Bool] = [:]
     @Published var dateMapped: [String: [String: ToDoItem]] = [:]
+    @Published var showSection: [String: Bool] = [:]
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en-US")
@@ -42,6 +43,7 @@ class ItemDB: ObservableObject {
             dateMapped[dateKey] = arr
         } else {
             dateMapped[dateKey] = [key: item]
+            showSection[dateKey] = true
         }
         //print("The keys are \(dateMapped.keys)")
     }
@@ -134,6 +136,16 @@ class ItemDB: ObservableObject {
         }
         if allDeletedItems.count > 5 {
             allDeletedItems = Array(allDeletedItems[...5])
+        }
+    }
+
+    func toggleShowSection(_ key: String) {
+        if let willShowSection = self.showSection[key] {
+            if willShowSection {
+                self.showSection[key] = false
+            } else {
+                self.showSection[key] = true
+            }
         }
     }
 }

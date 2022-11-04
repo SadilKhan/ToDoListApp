@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ColorsDB {
-
+    var buttonColor = Color(#colorLiteral(red: 0.3688242137, green: 0.01902992651, blue: 0.1999672949, alpha: 1))
     var backgroundColor = LinearGradient(
         gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1904447377, green: 0.115080364, blue: 0.2382679284, alpha: 1)), Color(#colorLiteral(red: 1, green: 0.5212053061, blue: 1, alpha: 1))]),
         startPoint: .topLeading,

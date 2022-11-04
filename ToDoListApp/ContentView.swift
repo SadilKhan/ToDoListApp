@@ -17,9 +17,16 @@ struct ContentView: View {
                 Spacer()
                 switch self.viewRouter.currentPage {
                 case .home:
-                    HomeView(viewRouter: viewRouter)
-                        .onAppear {
-                        self.viewRouter.showNavigator = true
+                    if itemDataBase.allKeys.isEmpty {
+                        NoItemsView(viewRouter: viewRouter)
+                            .onAppear {
+                            self.viewRouter.showNavigator = false
+                        }
+                    } else {
+                        HomeView(viewRouter: viewRouter)
+                            .onAppear {
+                            self.viewRouter.showNavigator = true
+                        }
                     }
 
                 case .analytics:
