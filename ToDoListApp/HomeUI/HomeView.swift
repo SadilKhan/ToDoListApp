@@ -164,6 +164,7 @@ struct ItemList: View {
                     .onChange(of: isDone) { newValue in
                     itemDataBase.allDone[key] = newValue
                 }
+                // Title
                 Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getTitleText() : "")
                     .strikethrough(isDone)
                     .font(.body)
@@ -171,13 +172,18 @@ struct ItemList: View {
                 .foregroundColor(.primary)
                 Spacer()
                 HStack {
+                    // Type
                     Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType() : "")
                         .font(.caption)
                         .fontWeight(.light)
+                    if itemDataBase.allItems[key] != nil{
+                        colorForType(itemDataBase.allItems[key]!.getType())
+                    }
 
-                    Circle()
-                        .fill(itemDataBase.allItems[key] != nil ? colorForType(itemDataBase.allItems[key]!.getType()) : colorForType(""))
-                        .frame(width: 10, height: 10)
+//                    Circle()
+//                        .stroke()
+//                        .overlay(itemDataBase.allItems[key] != nil ? colorForType(itemDataBase.allItems[key]!.getType()) : colorForType(""))
+//                        .frame(width: 10, height: 10)
                 }
             }
         }

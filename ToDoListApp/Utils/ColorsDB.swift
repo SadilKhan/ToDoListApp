@@ -32,17 +32,17 @@ func randomColorChooser() -> Color {
 }
 
 
-func colorForType(_ type: String) -> Color {
+func colorForType(_ type: String) -> some View {
 
     switch type {
     case "Personal":
-        return Color.blue
+        return Image(systemName: "person.fill").foregroundColor(.blue)
     case "Work":
-        return Color.green
+        return Image(systemName: "shared.with.you").foregroundColor(.purple)
     case "Misc":
-        return Color.orange
+        return Image(systemName: "hand.thumbsup.fill").foregroundColor(.orange)
     default:
-        return Color.primary
+        return Image(systemName: "hand.thumbsup").foregroundColor(.orange)
     }
 
 }

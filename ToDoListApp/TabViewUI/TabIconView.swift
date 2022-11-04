@@ -28,6 +28,7 @@ struct TabIconView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: width, height: height)
                     .padding(.top, 20)
+                    .rotation3DEffect(viewRouter.isActive[assignedPage] ?? false ? .degrees(0) : .degrees(360), axis: (x: 0, y: 1, z: 0))
                 //.rotationEffect(Angle(degrees: clicked ? 360 : 0))
                 .offset(y: viewRouter.isActive[assignedPage] ?? false ? 0 : 20)
                 Text(tabName)
