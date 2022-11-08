@@ -48,12 +48,15 @@ struct InformationView: View {
             Button {
                 if self.titleText.count > 0 {
                     if itemDataBase.allItems[self.id] != nil {
-                        let _ = print(descriptionText)
-                        itemDataBase.updateItem(self.id, item: ToDoItem(titleText: self.titleText, descriptionText: self.descriptionText, type: self.typeSelected, date: self.selectedDate))
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            itemDataBase.updateItem(self.id, item: ToDoItem(titleText: self.titleText, descriptionText: self.descriptionText, type: self.typeSelected, date: self.selectedDate))
+                        }
                     } else {
-                        itemDataBase.appendItem(ToDoItem(titleText: titleText,
-                            descriptionText: descriptionText, type: typeSelected,
-                            date: selectedDate))
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            itemDataBase.appendItem(ToDoItem(titleText: titleText,
+                                descriptionText: descriptionText, type: typeSelected,
+                                date: selectedDate))
+                        }
                     }
                     showAlert = false
                     viewRouter.showNavigator = true

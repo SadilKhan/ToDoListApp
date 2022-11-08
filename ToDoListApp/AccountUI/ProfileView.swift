@@ -26,6 +26,7 @@ struct ProfileView: View {
     // MARK: BODY VIEW
     var body: some View {
         VStack {
+            Divider()
             // Profile Picture
             profilePicView
             Divider()
@@ -41,6 +42,7 @@ struct ProfileView: View {
             currentAge = age ?? 18.0
         }
             .navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.inline)
 
     }
 }
@@ -50,12 +52,7 @@ extension ProfileView {
 
     var basicInfomationView: some View {
         VStack {
-            Text("Basic Information")
-                .font(.body)
-                .fontWeight(.light)
-                .foregroundColor(.secondary)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.bottom, 10)
+            customText(title: "Basic Information")
 
             HStack {
                 Text("First Name")
@@ -111,17 +108,19 @@ extension ProfileView {
     }
 
     var profilePicView: some View {
-        ZStack {
-            Circle()
-                .stroke(.black)
-                .frame(width: 100, height: 100)
-            Image(systemName: "person.fill")
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(.blue)
-                .frame(width: 50, height: 50)
-        }.frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 20)
+        VStack{
+            customText(title: "Profile Picture")
+            ZStack {
+                Circle()
+                    .stroke(.black)
+                    .frame(width: 100, height: 100)
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.blue)
+                    .frame(width: 50, height: 50)
+            }.frame(maxWidth: .infinity, alignment: .leading)
+        }.padding(.horizontal, 20)
     }
 
     var divider: some View {
@@ -162,6 +161,15 @@ extension ProfileView {
             return false
         }
         return true
+    }
+
+    func customText(title: String) -> some View {
+        Text(title)
+            .font(.body)
+            .fontWeight(.light)
+            .foregroundColor(.secondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, 10)
     }
 }
 

@@ -28,10 +28,15 @@ struct TaskView: View {
                             if showSection {
                                 ForEach(sortedValKeys, id: \.self) { key in
                                     NextPageNavLink(key: key, viewRouter: viewRouter)
-                                        .transition(.move(edge: .trailing))
-
+                                        .transition(.move(edge: .top))
                                 }
-                                    .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys) })
+                                    .onDelete(perform: {
+                                    indexSet in
+                                    withAnimation(.easeInOut(duration: 0.5)) {
+                                        itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys)
+                                    }
+
+                                })
                             }
                         } header: {
                             HStack {
@@ -165,7 +170,9 @@ struct ItemList: View {
                 }
                     .toggleStyle(CheckToggleStyle())
                     .onChange(of: isDone) { newValue in
-                    itemDataBase.allDone[key] = newValue
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        itemDataBase.allDone[key] = newValue
+                    }
                 }
                 // Title
                 Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getTitleText() : "")

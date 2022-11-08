@@ -28,7 +28,7 @@ struct AccountMenuView: View {
                 signedOutButton
             } // LIST END
             .navigationTitle("Account")
-                .navigationBarTitleDisplayMode(.inline)
+                //.navigationBarTitleDisplayMode(.inline)
         } // NAV END
     }
 }

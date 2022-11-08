@@ -16,6 +16,7 @@ struct WelcomeScreenView: View {
     @Binding var pageMovingDirection: PageDirection
     var body: some View {
         ZStack {
+            // Rive Background Animation
             RiveViewModel(fileName: "background").view()
                 .blur(radius: 50)
                 .ignoresSafeArea()
@@ -30,7 +31,7 @@ struct WelcomeScreenView: View {
                     .frame(width: 350, height: 500)
                 VStack {
                     Spacer()
-                    Text("Do you want to have a productive day? Sign Up and add some new tasks to get going.")
+                    Text("Do you want to have a productive day? Sign Up to add some new tasks and get going.")
                         .font(.title)
                         .fontWeight(.light)
                         .frame(width: 300)

@@ -8,7 +8,9 @@ struct NextPageNavLink: View {
     var body: some View {
         NavigationLink {
             if let item = itemDataBase.allItems[key] {
-                InformationView(key: key, item: item, viewRouter)
+                withAnimation(.spring(response: 0.9, dampingFraction: 0.5)) {
+                    InformationView(key: key, item: item, viewRouter)
+                }
             }
         } label: {
             ItemList(key: key)
@@ -22,7 +24,9 @@ struct NewButton: View {
     @ObservedObject var viewRouter: ViewRouter
     var body: some View {
         NavigationLink {
-            InformationView(viewRouter)
+            withAnimation(.spring(response: 0.9, dampingFraction: 0.5)) {
+                InformationView(viewRouter)
+            }
         } label: {
             Image(systemName: "plus")
         }
@@ -61,8 +65,10 @@ struct UndoButton: View {
     var body: some View {
         Button {
             if itemDataBase.allDeletedItems.count > 0 {
-                itemDataBase.appendItem(itemDataBase.allDeletedItems[0].1)
-                itemDataBase.allDeletedItems.removeFirst()
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    itemDataBase.appendItem(itemDataBase.allDeletedItems[0].1)
+                    itemDataBase.allDeletedItems.removeFirst()
+                }
             }
         } label: {
             Text("Undo")
