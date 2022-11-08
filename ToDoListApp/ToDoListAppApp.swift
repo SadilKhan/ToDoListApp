@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct ToDoListAppApp: App {
+    @StateObject var itemDataBase: ItemDB = ItemDB()
     var body: some Scene {
         WindowGroup {
             ContentView()

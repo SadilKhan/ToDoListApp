@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A0D664829196EA200F2ADA3 /* background2.riv in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D664729196EA200F2ADA3 /* background2.riv */; };
+		8A0D664B291971D000F2ADA3 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D664A291971D000F2ADA3 /* SignUpView.swift */; };
+		8A0D66512919921000F2ADA3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D66502919921000F2ADA3 /* ProfileView.swift */; };
+		8A35FF602919C9EA00FC7D04 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 8A35FF5F2919C9EA00FC7D04 /* RiveRuntime */; };
+		8A35FF622919CB1600FC7D04 /* AccountMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35FF612919CB1600FC7D04 /* AccountMenuView.swift */; };
+		8A35FF642919CEFA00FC7D04 /* SignOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35FF632919CEFA00FC7D04 /* SignOutView.swift */; };
 		8A3CF288290FA22C002A4161 /* ToDoListAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF287290FA22C002A4161 /* ToDoListAppApp.swift */; };
 		8A3CF28A290FA22C002A4161 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF289290FA22C002A4161 /* ContentView.swift */; };
 		8A3CF28C290FA22E002A4161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3CF28B290FA22E002A4161 /* Assets.xcassets */; };
@@ -17,20 +23,26 @@
 		8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF29F290FA86B002A4161 /* DescriptionField.swift */; };
 		8A3CF2A3290FB14D002A4161 /* ItemDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF2A2290FB14D002A4161 /* ItemDB.swift */; };
 		8A3CF2A6290FD59C002A4161 /* ColorsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3CF2A5290FD59C002A4161 /* ColorsDB.swift */; };
-		8A5AC3CA2913175B006D6CCE /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5AC3C92913175B006D6CCE /* NoItemsView.swift */; };
+		8A5AC3CA2913175B006D6CCE /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5AC3C92913175B006D6CCE /* WelcomeScreenView.swift */; };
+		8AB1CB7A29155835000AA9F8 /* background.riv in Resources */ = {isa = PBXBuildFile; fileRef = 8AB1CB7929155835000AA9F8 /* background.riv */; };
 		8AC0FAF02910069B00F52FD9 /* DateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0FAEF2910069B00F52FD9 /* DateField.swift */; };
 		8ADC19FF2914544C002788B2 /* TabIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC19FE2914544C002788B2 /* TabIconView.swift */; };
 		8ADC1A01291454CC002788B2 /* ViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC1A00291454CC002788B2 /* ViewNavigator.swift */; };
 		8AF401AE29113C3300B9906F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401AD29113C3300B9906F /* Style.swift */; };
 		8AF401B02911574F00B9906F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401AF2911574F00B9906F /* Utilities.swift */; };
 		8AF401B22911629400B9906F /* PickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B12911629300B9906F /* PickerField.swift */; };
-		8AF401B52911ADC900B9906F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B42911ADC900B9906F /* HomeView.swift */; };
-		8AF401B72911AE1B00B9906F /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B62911AE1B00B9906F /* HomeButton.swift */; };
+		8AF401B52911ADC900B9906F /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B42911ADC900B9906F /* TaskView.swift */; };
+		8AF401B72911AE1B00B9906F /* TaskViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B62911AE1B00B9906F /* TaskViewButton.swift */; };
 		8AF401BA2911AF0F00B9906F /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401B92911AF0F00B9906F /* AnalyticsView.swift */; };
 		8AF401BD2911B49E00B9906F /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF401BC2911B49E00B9906F /* BarChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A0D664729196EA200F2ADA3 /* background2.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = background2.riv; sourceTree = "<group>"; };
+		8A0D664A291971D000F2ADA3 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		8A0D66502919921000F2ADA3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		8A35FF612919CB1600FC7D04 /* AccountMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMenuView.swift; sourceTree = "<group>"; };
+		8A35FF632919CEFA00FC7D04 /* SignOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutView.swift; sourceTree = "<group>"; };
 		8A3CF284290FA22C002A4161 /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A3CF287290FA22C002A4161 /* ToDoListAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListAppApp.swift; sourceTree = "<group>"; };
 		8A3CF289290FA22C002A4161 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,7 +54,9 @@
 		8A3CF29F290FA86B002A4161 /* DescriptionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionField.swift; sourceTree = "<group>"; };
 		8A3CF2A2290FB14D002A4161 /* ItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDB.swift; sourceTree = "<group>"; };
 		8A3CF2A5290FD59C002A4161 /* ColorsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsDB.swift; sourceTree = "<group>"; };
-		8A5AC3C92913175B006D6CCE /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
+		8A5AC3C92913175B006D6CCE /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
+		8AB1CB6529154BB6000AA9F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8AB1CB7929155835000AA9F8 /* background.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.riv; sourceTree = "<group>"; };
 		8AC0FAEF2910069B00F52FD9 /* DateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateField.swift; sourceTree = "<group>"; };
 		8AC0FAF12910475C00F52FD9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8ADC19FE2914544C002788B2 /* TabIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIconView.swift; sourceTree = "<group>"; };
@@ -50,8 +64,8 @@
 		8AF401AD29113C3300B9906F /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		8AF401AF2911574F00B9906F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8AF401B12911629300B9906F /* PickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerField.swift; sourceTree = "<group>"; };
-		8AF401B42911ADC900B9906F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		8AF401B62911AE1B00B9906F /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
+		8AF401B42911ADC900B9906F /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
+		8AF401B62911AE1B00B9906F /* TaskViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewButton.swift; sourceTree = "<group>"; };
 		8AF401B92911AF0F00B9906F /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		8AF401BC2911B49E00B9906F /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,17 +75,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A35FF602919C9EA00FC7D04 /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A0D66492919718C00F2ADA3 /* UserOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D664A291971D000F2ADA3 /* SignUpView.swift */,
+				8A5AC3C92913175B006D6CCE /* WelcomeScreenView.swift */,
+			);
+			path = UserOnboarding;
+			sourceTree = "<group>";
+		};
+		8A0D664F291991F900F2ADA3 /* AccountUI */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D66502919921000F2ADA3 /* ProfileView.swift */,
+				8A35FF612919CB1600FC7D04 /* AccountMenuView.swift */,
+				8A35FF632919CEFA00FC7D04 /* SignOutView.swift */,
+			);
+			path = AccountUI;
+			sourceTree = "<group>";
+		};
+		8A25ABF52915456400A0CFAD /* RiveAssets */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D664729196EA200F2ADA3 /* background2.riv */,
+				8AB1CB7929155835000AA9F8 /* background.riv */,
+			);
+			path = RiveAssets;
+			sourceTree = "<group>";
+		};
 		8A3CF27B290FA22C002A4161 = {
 			isa = PBXGroup;
 			children = (
 				8A3CF286290FA22C002A4161 /* ToDoListApp */,
 				8A3CF285290FA22C002A4161 /* Products */,
+				8AB1CB6929154D81000AA9F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,12 +130,16 @@
 		8A3CF286290FA22C002A4161 /* ToDoListApp */ = {
 			isa = PBXGroup;
 			children = (
+				8A0D664F291991F900F2ADA3 /* AccountUI */,
+				8A0D66492919718C00F2ADA3 /* UserOnboarding */,
+				8AB1CB6529154BB6000AA9F8 /* Info.plist */,
+				8A25ABF52915456400A0CFAD /* RiveAssets */,
 				8ADC19FD29145428002788B2 /* TabViewUI */,
 				8AF401B82911AEFC00B9906F /* AnalyticsUI */,
 				8A3CF2A4290FD581002A4161 /* Utils */,
 				8A3CF287290FA22C002A4161 /* ToDoListAppApp.swift */,
 				8A3CF289290FA22C002A4161 /* ContentView.swift */,
-				8AF401B32911ADBB00B9906F /* HomeUI */,
+				8AF401B32911ADBB00B9906F /* TaskUI */,
 				8A3CF29C290FA5CC002A4161 /* InformationUI */,
 				8A3CF2A1290FB10E002A4161 /* ItemData */,
 				8A3CF28B290FA22E002A4161 /* Assets.xcassets */,
@@ -140,6 +188,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		8AB1CB6929154D81000AA9F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8ADC19FD29145428002788B2 /* TabViewUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,14 +204,13 @@
 			path = TabViewUI;
 			sourceTree = "<group>";
 		};
-		8AF401B32911ADBB00B9906F /* HomeUI */ = {
+		8AF401B32911ADBB00B9906F /* TaskUI */ = {
 			isa = PBXGroup;
 			children = (
-				8AF401B42911ADC900B9906F /* HomeView.swift */,
-				8AF401B62911AE1B00B9906F /* HomeButton.swift */,
-				8A5AC3C92913175B006D6CCE /* NoItemsView.swift */,
+				8AF401B42911ADC900B9906F /* TaskView.swift */,
+				8AF401B62911AE1B00B9906F /* TaskViewButton.swift */,
 			);
-			path = HomeUI;
+			path = TaskUI;
 			sourceTree = "<group>";
 		};
 		8AF401B82911AEFC00B9906F /* AnalyticsUI */ = {
@@ -185,6 +239,7 @@
 			);
 			name = ToDoListApp;
 			packageProductDependencies = (
+				8A35FF5F2919C9EA00FC7D04 /* RiveRuntime */,
 			);
 			productName = ToDoListApp;
 			productReference = 8A3CF284290FA22C002A4161 /* ToDoListApp.app */;
@@ -215,6 +270,7 @@
 			);
 			mainGroup = 8A3CF27B290FA22C002A4161;
 			packageReferences = (
+				8A35FF5E2919C9EA00FC7D04 /* XCRemoteSwiftPackageReference "rive-ios" */,
 			);
 			productRefGroup = 8A3CF285290FA22C002A4161 /* Products */;
 			projectDirPath = "";
@@ -230,6 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AB1CB7A29155835000AA9F8 /* background.riv in Resources */,
+				8A0D664829196EA200F2ADA3 /* background2.riv in Resources */,
 				8A3CF28F290FA22E002A4161 /* Preview Assets.xcassets in Resources */,
 				8A3CF28C290FA22E002A4161 /* Assets.xcassets in Resources */,
 			);
@@ -244,7 +302,7 @@
 			files = (
 				8A3CF29E290FA603002A4161 /* TitleTextField.swift in Sources */,
 				8A3CF28A290FA22C002A4161 /* ContentView.swift in Sources */,
-				8AF401B52911ADC900B9906F /* HomeView.swift in Sources */,
+				8AF401B52911ADC900B9906F /* TaskView.swift in Sources */,
 				8ADC19FF2914544C002788B2 /* TabIconView.swift in Sources */,
 				8AF401BA2911AF0F00B9906F /* AnalyticsView.swift in Sources */,
 				8AF401B02911574F00B9906F /* Utilities.swift in Sources */,
@@ -254,13 +312,17 @@
 				8AF401B22911629400B9906F /* PickerField.swift in Sources */,
 				8A3CF2A0290FA86B002A4161 /* DescriptionField.swift in Sources */,
 				8A3CF2A6290FD59C002A4161 /* ColorsDB.swift in Sources */,
-				8AF401B72911AE1B00B9906F /* HomeButton.swift in Sources */,
+				8AF401B72911AE1B00B9906F /* TaskViewButton.swift in Sources */,
 				8AC0FAF02910069B00F52FD9 /* DateField.swift in Sources */,
-				8A5AC3CA2913175B006D6CCE /* NoItemsView.swift in Sources */,
+				8A5AC3CA2913175B006D6CCE /* WelcomeScreenView.swift in Sources */,
+				8A35FF642919CEFA00FC7D04 /* SignOutView.swift in Sources */,
 				8A3CF29A290FA4F6002A4161 /* ItemInfo.swift in Sources */,
+				8A0D664B291971D000F2ADA3 /* SignUpView.swift in Sources */,
 				8AF401AE29113C3300B9906F /* Style.swift in Sources */,
 				8AF401BD2911B49E00B9906F /* BarChartView.swift in Sources */,
+				8A0D66512919921000F2ADA3 /* ProfileView.swift in Sources */,
 				8ADC1A01291454CC002788B2 /* ViewNavigator.swift in Sources */,
+				8A35FF622919CB1600FC7D04 /* AccountMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +453,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ToDoListApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDoListApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -401,7 +464,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3.1;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.student.ToDoListApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -420,6 +483,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ToDoListApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDoListApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -430,7 +494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3.1;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.student.ToDoListApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -461,6 +525,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A35FF5E2919C9EA00FC7D04 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A35FF5F2919C9EA00FC7D04 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A35FF5E2919C9EA00FC7D04 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A3CF27C290FA22C002A4161 /* Project object */;
 }

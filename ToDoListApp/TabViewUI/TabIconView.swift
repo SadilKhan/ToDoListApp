@@ -18,8 +18,7 @@ struct TabIconView: View {
     var body: some View {
         Button {
             withAnimation(.spring(response: 0.7, dampingFraction: 0.5)) {
-                viewRouter.currentPage = assignedPage
-                viewRouter.animationActiveButton(assignedPage)
+                viewRouter.changeActiveButton(assignedPage)
             }
         } label: {
             VStack {
@@ -39,10 +38,7 @@ struct TabIconView: View {
             }
         }
             .padding(.horizontal, -4)
-        //            .onTapGesture {
-        //            viewRouter.currentPage = assignedPage
-        //        }
-        .foregroundColor(viewRouter.currentPage == assignedPage ? .blue : .gray.opacity(0.5))
+            .foregroundColor(viewRouter.currentPage == assignedPage ? .blue : .gray.opacity(0.5))
     }
 }
 

@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct HomeView: View {
-    let navTitle: String = "Todos"
+struct TaskView: View {
+    let navTitle: String
     @EnvironmentObject var itemDataBase: ItemDB
     @State var toUpdate: Bool = false
     @State var searchText: String = ""
@@ -29,7 +29,7 @@ struct HomeView: View {
                                 ForEach(sortedValKeys, id: \.self) { key in
                                     NextPageNavLink(key: key, viewRouter: viewRouter)
                                         .transition(.move(edge: .trailing))
-                                    //.listRowBackground(ColorsDB().listItemColor.shadow(radius: 2).blur(radius: 2))
+
                                 }
                                     .onDelete(perform: { indexSet in itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys) })
                             }
@@ -40,7 +40,7 @@ struct HomeView: View {
                                     String(dateKey)
                                 )
                                     .textCase(nil)
-                                    .font(.body)
+                                    .font(.caption)
                                     .foregroundColor(Color.blue)
                                 // Add a plus button beside every date
                                 NavigationLink {
@@ -105,8 +105,9 @@ struct HomeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NewButton(viewRouter: viewRouter)
                 }
-            } // TOOLBAR END
+            }
         } // NAV END
+
     }
 
     var searchResults: [String: [String: ToDoItem]] {
@@ -185,10 +186,10 @@ struct ItemList: View {
             }
         }
             .contextMenu {
-                // Duplicate Button
+            // Duplicate Button
             Button(action: {
-                if let item = itemDataBase.allItems[key]{
-                    withAnimation(.easeInOut(duration: 0.5)){
+                if let item = itemDataBase.allItems[key] {
+                    withAnimation(.easeInOut(duration: 0.5)) {
                         self.itemDataBase.appendItem(item)
                     }
                 }
@@ -196,7 +197,7 @@ struct ItemList: View {
                     Text("Duplicate Task")
                 })
         }
-        
+
             .padding(.vertical, self.colorScheme == .light ? 10 : 0)
 
     }
