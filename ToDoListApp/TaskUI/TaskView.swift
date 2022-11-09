@@ -34,7 +34,6 @@ struct TaskView: View {
                                     withAnimation(.easeInOut(duration: 0.5)) {
                                         itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys)
                                     }
-
                                 })
                             }
                         } header: {
@@ -205,9 +204,7 @@ struct ItemList: View {
                     Text("Duplicate Task")
                 })
         }
-
             .padding(.vertical, self.colorScheme == .light ? 10 : 0)
-
     }
 
     init(key: String) {
