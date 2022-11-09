@@ -81,7 +81,7 @@ func sortKeysByDone(_ itemDict: [String: ToDoItem], _ allDone: [String: Bool]) -
 func getAlert() -> Alert {
 
     return Alert(title: Text("Empty Title Field"),
-        message: Text("Enter something in Title"),
+        message: Text("Title must be at least 1 character long"),
         dismissButton: .cancel())
 }
 

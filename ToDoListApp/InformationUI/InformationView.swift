@@ -20,7 +20,7 @@ struct InformationView: View {
     @State var titleText: String
     @State var descriptionText: String
     @State var selectedDate: Date
-    @State var typeSelected: String
+    @State var typeSelected: TaskType
     @State var showAlert: Bool = false
     @State var isAnimated: Bool = false
     @ObservedObject var viewRouter: ViewRouter
@@ -99,7 +99,7 @@ struct InformationView: View {
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
         self._selectedDate = State(initialValue: Date())
-        self._typeSelected = State(initialValue: "Personal")
+        self._typeSelected = State(initialValue: .Personal)
         self.viewRouter = viewRouter
     }
 
@@ -118,7 +118,7 @@ struct InformationView: View {
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
         self._selectedDate = State(initialValue: date)
-        self._typeSelected = State(initialValue: "Personal")
+        self._typeSelected = State(initialValue: .Personal)
         self.viewRouter = viewRouter
     }
 

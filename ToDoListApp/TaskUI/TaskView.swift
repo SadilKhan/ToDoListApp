@@ -125,7 +125,7 @@ struct TaskView: View {
                 if let valueDict = itemDataBase.dateMapped[dateKey] {
                     temp = [:]
                     for (key, value) in valueDict {
-                        if value.getTitleText().lowercased().contains(searchText.lowercased()) || value.getDecriptionText().lowercased().contains(searchText.lowercased()) || value.getType().lowercased().contains(searchText.lowercased()) || dateKey.lowercased().contains(searchText.lowercased()) {
+                        if value.getTitleText().lowercased().contains(searchText.lowercased()) || value.getDecriptionText().lowercased().contains(searchText.lowercased()) || value.getType().rawValue.lowercased().contains(searchText.lowercased()) || dateKey.lowercased().contains(searchText.lowercased()) {
                             temp[key] = value
                         }
                     }
@@ -183,11 +183,11 @@ struct ItemList: View {
                 Spacer()
                 HStack {
                     // Type
-                    Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType() : "")
+                    Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType().rawValue : "")
                         .font(.caption)
                         .fontWeight(.light)
                     if itemDataBase.allItems[key] != nil {
-                        colorForType(itemDataBase.allItems[key]!.getType())
+                        colorForType(itemDataBase.allItems[key]!.getType().rawValue)
                     }
                 }
             }

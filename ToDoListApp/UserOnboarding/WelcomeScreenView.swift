@@ -18,16 +18,21 @@ struct WelcomeScreenView: View {
         ZStack {
             // Rive Background Animation
             RiveViewModel(fileName: "background").view()
-                .blur(radius: 50)
+                .blur(radius: 40)
                 .ignoresSafeArea()
                 .background(
                 Image("Spline")
                     .blur(radius: 50)
-                    .offset(x: 200, y: -100)
-            )
+                    .offset(x: 200, y: 100)
+                )
+//                .background {
+//                    Image("Spline")
+//                        .blur(radius: 50)
+//                        .offset(x:-200,y:-100)
+//                }
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(.white.opacity(0.2))
+                    .fill(.ultraThinMaterial)
                     .frame(width: 350, height: 500)
                 VStack {
                     Spacer()
@@ -42,16 +47,18 @@ struct WelcomeScreenView: View {
                         withAnimation(.easeInOut(duration: 0.5)) {
                             onBoadingState = .nameField
                         }
+
                     } label: {
                         Text("Sign Up")
                             .foregroundColor(.white)
+                            .frame(width: 200)
                             .padding()
-                            .background(ColorsDB().buttonColor)
+                            .background(isAnimated ? ColorsDB().buttonColor : ColorsDB().buttonColotNotAnimated)
                             .cornerRadius(20)
                             .scaleEffect(isAnimated ? 1.2 : 1)
-                            .shadow(color: ColorsDB().buttonColor.opacity(0.8), radius: 20, x: 10, y: 20)
+                            .shadow(color: isAnimated ? ColorsDB().buttonColor : ColorsDB().buttonColotNotAnimated.opacity(0.8), radius: isAnimated ? 25 : 5, x: 0, y: isAnimated ? 30 : 20)
                             .onAppear {
-                            withAnimation(.easeInOut(duration: 1.5).repeatForever()) {
+                            withAnimation(.easeInOut(duration: 2).repeatForever()) {
                                 isAnimated.toggle()
                             }
                         }
@@ -59,7 +66,6 @@ struct WelcomeScreenView: View {
                     Spacer()
                 }
             }
-            //.navigationTitle(navTitle)
         }
     }
 }

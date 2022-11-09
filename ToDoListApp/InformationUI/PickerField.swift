@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+
+
 struct PickerField: View {
-    @State var priorityOptions: [String] = ["Personal","Work","Misc"]
-    @Binding var selection: String
+    @State var priorityOptions: [TaskType] = [TaskType.Personal,TaskType.Work,TaskType.Misc]
+    @Binding var selection: TaskType
     var body: some View {
         HStack {
             Text("Type")
@@ -23,7 +25,7 @@ struct PickerField: View {
             
             Picker(selection: $selection) {
                 ForEach(0..<priorityOptions.count, id: \.self) { i in
-                    Text((priorityOptions[i])).tag(priorityOptions[i])
+                    Text((priorityOptions[i].rawValue)).tag(priorityOptions[i])
                 }
             } label: {
                 Text("Priority")

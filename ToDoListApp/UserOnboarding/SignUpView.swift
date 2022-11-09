@@ -31,17 +31,18 @@ struct SignUpView: View {
     @AppStorage("isUserSignedIn") var isUserSignedIn: Bool?
 
     // PLACEHOLDERS FOR TEXTFIELD
-    @State var currentFirstName: String = ""
-    @State var currentMiddleName: String = ""
-    @State var currentLastName: String = ""
-    @State var currentAge: Double = 18
+    @State private var currentFirstName: String = ""
+    @State private var currentMiddleName: String = ""
+    @State private var currentLastName: String = ""
+    @State private var currentAge: Double = 18
 
     // OTHER
-    @State var showNameAlert: Bool = false
-    @State var alertTitle: String = ""
-    @State var onBoadingState: OnBoadingStateType = .welcomeScreen
+    @State private var showNameAlert: Bool = false
+    @State private var alertTitle: String = ""
+    @State private var onBoadingState: OnBoadingStateType = .welcomeScreen
     @ObservedObject var viewRouter: ViewRouter
-    @State var pageMovingDirection: PageDirection = .next
+    @State private var pageMovingDirection: PageDirection = .next
+    @FocusState private var isUserInFocus: Bool
 
 
 
@@ -49,16 +50,21 @@ struct SignUpView: View {
         switch onBoadingState {
         case .welcomeScreen:
             // Welcome Screen
-            WelcomeScreenView(onBoadingState: $onBoadingState,pageMovingDirection: $pageMovingDirection)
+            WelcomeScreenView(onBoadingState: $onBoadingState, pageMovingDirection: $pageMovingDirection)
                 .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
         case .nameField:
             // Name Screen
             nameView
                 .transition(.asymmetric(insertion: pageMovingDirection == .next ? .move(edge: .trailing) : .move(edge: .leading), removal: pageMovingDirection == .next ? .move(edge: .leading) : .move(edge: .trailing)))
+                .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.isUserInFocus.toggle()
+                }
+            }
         case .ageField:
             // Age Screen
             ageView
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
+                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity.animation(.easeIn(duration: 0.5))))
         }
     }
 }
@@ -88,11 +94,12 @@ extension SignUpView {
                     .foregroundColor(.white)
 
                 // First Name Text Field
-                createNameView(nameVariable: $currentFirstName, defaultText: "First Name")
+                createNameView(nameVariable: $currentFirstName, defaultText: "First Name (Required)")
+                    .focused($isUserInFocus)
                 // Middle Name Text Field
                 createNameView(nameVariable: $currentMiddleName, defaultText: "Middle Name (Optional)")
                 // Last Name Text Field
-                createNameView(nameVariable: $currentLastName, defaultText: "Last Name")
+                createNameView(nameVariable: $currentLastName, defaultText: "Last Name (Optional)")
                 Spacer()
                 nextPageButton
 

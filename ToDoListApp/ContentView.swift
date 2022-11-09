@@ -40,6 +40,7 @@ extension ContentView {
                 switch self.viewRouter.currentPage {
                 case .home:
                     TaskView(navTitle: "Hey \(firstName ?? "User")", viewRouter: viewRouter)
+                        .transition(.asymmetric(insertion: .opacity.animation(.easeOut(duration: 0.5)), removal: .opacity.animation(.easeIn(duration: 0.5))))
                         .onAppear {
                         self.viewRouter.showNavigator = true
                     }

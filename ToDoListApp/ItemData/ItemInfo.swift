@@ -12,10 +12,10 @@ class ToDoItem: Identifiable {
     private var descriptionText: String
     private var date: Date
     var isDone: Bool = false
-    private var type: String
+    private var type: TaskType
 
 
-    init(titleText: String, descriptionText: String, type: String, date: Date) {
+    init(titleText: String, descriptionText: String, type: TaskType, date: Date) {
         self.titleText = titleText
         self.descriptionText = descriptionText
         self.type = type
@@ -33,7 +33,14 @@ class ToDoItem: Identifiable {
     func getDate() -> Date {
         return date
     }
-    func getType() -> String {
+    func getType() -> TaskType {
         return type
     }
+}
+
+
+enum TaskType:String {
+    case Personal = "Personal"
+    case Work = "Work"
+    case Misc = "Misc"
 }
