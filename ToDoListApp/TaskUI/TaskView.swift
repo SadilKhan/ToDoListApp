@@ -28,7 +28,6 @@ struct TaskView: View {
                             if showSection {
                                 ForEach(sortedValKeys, id: \.self) { key in
                                     NextPageNavLink(key: key, viewRouter: viewRouter)
-                                        .transition(.move(edge: .top))
                                 }
                                     .onDelete(perform: {
                                     indexSet in
@@ -80,9 +79,11 @@ struct TaskView: View {
                     }
                 }
                     .onChange(of: toUpdate) { _ in
-                    itemDataBase.deleteItemDone()
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        itemDataBase.deleteItemDone()
+                    }
                 }
-            } // LIST END
+            }// LIST END
             .listStyle(.plain)
                 .scrollContentBackground(.hidden)
 

@@ -44,7 +44,7 @@ extension AccountMenuView {
 
 
         } label: {
-            Text("Sign Out")
+            Text("Sign out")
         }
             .alert(isPresented: $showSignOutAlert) {
             signOutAlert()
@@ -66,7 +66,7 @@ extension AccountMenuView {
         Alert(
             title: Text("Are you sure you want to sign out?"),
             message: Text("Signing out will delete all your information. This action is irreversible."),
-            primaryButton: .destructive(Text("Sign Out")) {
+            primaryButton: .destructive(Text("Sign out")) {
                 self.viewRouter.changeActiveButton(.home)
                 withAnimation(.easeInOut(duration: 0.5)) {
                     signOut()

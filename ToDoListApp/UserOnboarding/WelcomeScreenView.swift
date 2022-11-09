@@ -24,18 +24,14 @@ struct WelcomeScreenView: View {
                 Image("Spline")
                     .blur(radius: 50)
                     .offset(x: 200, y: 100)
-                )
-//                .background {
-//                    Image("Spline")
-//                        .blur(radius: 50)
-//                        .offset(x:-200,y:-100)
-//                }
+            )
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(.ultraThinMaterial)
                     .frame(width: 350, height: 500)
                 VStack {
-                    Spacer()
+                    RiveViewModel(fileName: "tidi").view()
+                        .frame(height: 300)
                     Text("Do you want to have a productive day? Sign Up to add some new tasks and get going.")
                         .font(.title)
                         .fontWeight(.light)

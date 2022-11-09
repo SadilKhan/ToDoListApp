@@ -255,7 +255,8 @@ struct createNameView: View {
                 .padding()
                 .background(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(.white)
+                    //.fill(.white)
+                    .fill(.thickMaterial)
                     .opacity(0.5)
             )
                 .padding(.horizontal, 20)
