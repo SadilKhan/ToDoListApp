@@ -1,10 +1,3 @@
-//
-//  SignUpView.swift
-//  ToDoListApp
-//
-//  Created by Md. Sadil Khan on 07/11/2022.
-//
-
 import SwiftUI
 
 enum OnBoadingStateType {
@@ -43,8 +36,6 @@ struct SignUpView: View {
     @ObservedObject var viewRouter: ViewRouter
     @State private var pageMovingDirection: PageDirection = .next
     @FocusState private var isUserInFocus: Bool
-
-
 
     var body: some View {
         switch onBoadingState {

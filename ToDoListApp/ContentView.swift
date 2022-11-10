@@ -38,19 +38,19 @@ extension ContentView {
             VStack {
                 Spacer()
                 switch self.viewRouter.currentPage {
+                    // Home Page
                 case .home:
                     TaskView(navTitle: "Hi \(firstName ?? "User")", viewRouter: viewRouter)
                         .transition(.asymmetric(insertion: .opacity.animation(.easeOut(duration: 0.5)), removal: .opacity.animation(.easeIn(duration: 0.5))))
                         .onAppear {
                         self.viewRouter.showNavigator = true
                     }
-                    //.transition(.move(edge:.leading))
+                    // Analytics Page
                 case .analytics:
                     AnalyticsView()
-//                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                    // Account Page
                 case .account:
                     AccountMenuView(viewRouter: viewRouter)
-                    //.transition(.move(edge:.trailing))
                 }
                 Spacer()
                 if viewRouter.showNavigator {

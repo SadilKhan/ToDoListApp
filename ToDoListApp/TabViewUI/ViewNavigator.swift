@@ -1,10 +1,3 @@
-//
-//  ViewNavigator.swift
-//  ToDoListApp
-//
-//  Created by Md. Sadil Khan on 03/11/2022.
-//
-
 import SwiftUI
 
 /// This class maintains the current page view and navigates to another page by changing currentPage variable

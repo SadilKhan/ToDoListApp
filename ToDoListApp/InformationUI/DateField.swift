@@ -1,10 +1,3 @@
-//
-//  DateField.swift
-//  ToDoListApp
-//
-//  Created by Md. Sadil Khan on 31/10/2022.
-//
-
 import SwiftUI
 
 struct DateField: View {
@@ -17,8 +10,6 @@ struct DateField: View {
             in: StartingDate...,
             displayedComponents: [.date])
             .padding(.horizontal, 10)
-
-       
     }
 }
 

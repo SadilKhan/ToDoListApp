@@ -1,91 +1,18 @@
-//
-//  HomeView.swift
-//  ToDoListApp
-//
-//  Created by Md. Sadil Khan on 01/11/2022.
-//
-
 import SwiftUI
 
+// MARK: MAIN VIEW
+/// The main view where tasks are shown
 struct TaskView: View {
     let navTitle: String
-    @EnvironmentObject var itemDataBase: ItemDB
-    @State var toUpdate: Bool = false
-    @State var searchText: String = ""
+    @EnvironmentObject private var itemDataBase: ItemDB
+    @State private var toUpdate: Bool = false
+    @State private var searchText: String = ""
     @ObservedObject var viewRouter: ViewRouter
-    //@Environment(\.colorScheme) var colorScheme: ColorScheme
+    
     var body: some View {
         NavigationView { // NAV START
-            List { // LIST START
-                // Section start for Date
-                ForEach(sortDateKeys(searchResults), id: \.self) {
-                    dateKey in
-                    if let val = searchResults[dateKey], let showSection = self.itemDataBase.showSection[dateKey]
-                    {
-                        let sortedValKeys = sortKeysByDone(val, itemDataBase.allDone)
-                        // SECTION START FOR ITEMS BELONGING TO A DATE
-                        Section {
-                            if showSection {
-                                ForEach(sortedValKeys, id: \.self) { key in
-                                    NextPageNavLink(key: key, viewRouter: viewRouter)
-                                }
-                                    .onDelete(perform: {
-                                    indexSet in
-                                    withAnimation(.easeInOut(duration: 0.5)) {
-                                        itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys)
-                                    }
-                                })
-                            }
-                        } header: {
-                            HStack {
-                                // The Date Text
-                                Text(
-                                    String(dateKey)
-                                )
-                                    .textCase(nil)
-                                    .font(.caption)
-                                    .foregroundColor(Color.blue)
-                                // Add a plus button beside every date
-                                NavigationLink {
-                                    InformationView(date: val[sortedValKeys[0]] != nil ? val[sortedValKeys[0]]!.getDate() : Date(), viewRouter)
-                                } label: {
-                                    Image(systemName: "plus.circle.fill")
-                                        .resizable()
-                                        .frame(width: 25, height: 25)
-                                        .foregroundColor(Color.orange)
-                                }
-                                Spacer()
-                                // The Collapse Key
-                                Button {
-                                    withAnimation(.easeInOut(duration: 0.5)) {
-                                        self.itemDataBase.toggleShowSection(dateKey)
-                                    }
-                                } label: {
-                                    Image(systemName: "greaterthan.circle.fill")
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .foregroundColor(.orange)
-                                        .frame(width: 25, height: 25)
-                                        .rotationEffect(Angle(degrees: itemDataBase.showSection[dateKey] ?? false ? 90 : 0))
-                                }
-                            }
-                        } footer: {
-                            Text(val.count > 1 ? "\(val.count) items" : "\(val.count) item")
-                                .font(.caption)
-                                .foregroundColor(Color.secondary)
-                        } // SECTION END
-                        .listRowSeparator(.hidden)
-                    }
-                }
-                    .onChange(of: toUpdate) { _ in
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                        itemDataBase.deleteItemDone()
-                    }
-                }
-            }// LIST END
-            .listStyle(.plain)
-                .scrollContentBackground(.hidden)
-
+            //
+            listView
             // Navigation Bar Customization
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
                 .navigationTitle(navTitle)
@@ -115,7 +42,14 @@ struct TaskView: View {
 
     }
 
-    var searchResults: [String: [String: ToDoItem]] {
+}
+
+// MARK: SUB VIEWS
+
+extension TaskView {
+    
+    /// The results of the search textfield
+    private var searchResults: [String: [String: ToDoItem]] {
         var selectedKeys: [String: [String: ToDoItem]] = [:]
         var temp: [String: ToDoItem] = [:]
         if searchText.isEmpty {
@@ -138,7 +72,82 @@ struct TaskView: View {
             return selectedKeys
         }
     }
+
+    /// The Task list view
+    private var listView: some View {
+        List { // LIST START
+            // Section start for Date
+            ForEach(sortDateKeys(searchResults), id: \.self) {
+                dateKey in
+                if let val = searchResults[dateKey], let showSection = self.itemDataBase.showSection[dateKey]
+                {
+                    let sortedValKeys = sortKeysByDone(val, itemDataBase.allDone)
+                    // SECTION START FOR ITEMS BELONGING TO A DATE
+                    Section {
+                        if showSection {
+                            ForEach(sortedValKeys, id: \.self) { key in
+                                NextPageNavLink(key: key, viewRouter: viewRouter)
+                            }
+                                .onDelete(perform: {
+                                indexSet in
+                                withAnimation(.easeInOut(duration: 0.5)) {
+                                    itemDataBase.deleteItem(indexSet, dateKey, sortedValKeys)
+                                }
+                            })
+                        }
+                    } header: {
+                        HStack {
+                            // The Date Text
+                            Text(
+                                String(dateKey)
+                            )
+                                .textCase(nil)
+                                .font(.caption)
+                                .foregroundColor(Color.blue)
+                            // Add a plus button beside every date
+                            NavigationLink {
+                                InformationView(date: val[sortedValKeys[0]] != nil ? val[sortedValKeys[0]]!.getDate() : Date(), viewRouter)
+                            } label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundColor(Color.orange)
+                            }
+                            Spacer()
+                            // The Collapse Key
+                            Button {
+                                withAnimation(.easeInOut(duration: 0.5)) {
+                                    self.itemDataBase.toggleShowSection(dateKey)
+                                }
+                            } label: {
+                                Image(systemName: "greaterthan.circle.fill")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .foregroundColor(.orange)
+                                    .frame(width: 25, height: 25)
+                                    .rotationEffect(Angle(degrees: itemDataBase.showSection[dateKey] ?? false ? 90 : 0))
+                            }
+                        }
+                    } footer: {
+                        Text(val.count > 1 ? "\(val.count) items" : "\(val.count) item")
+                            .font(.caption)
+                            .foregroundColor(Color.secondary)
+                    } // SECTION END
+                    .listRowSeparator(.hidden)
+                }
+            }
+                .onChange(of: toUpdate) { _ in
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    itemDataBase.deleteItemDone()
+                }
+            }
+        }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+    }
 }
+
+
 
 
 // MARK: ITEM LIST

@@ -91,9 +91,7 @@ struct InformationView: View {
 
     }
 
-
     // MARK: CONSTRUCTOR
-
     init(_ viewRouter: ViewRouter) {
         self._defaultTitleText = State(initialValue: "Write Something Here ✍🏼")
         self._titleText = State(initialValue: "")

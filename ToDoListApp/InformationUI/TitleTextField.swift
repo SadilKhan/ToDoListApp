@@ -18,7 +18,6 @@ struct TitleTextField: View {
             // TextField for adding title
             TextField(defaultTitleText, text: $titleText)
                 .padding()
-                //.background(Color.gray.opacity(0.1).cornerRadius(30))
                 .background(.thinMaterial)
                 .cornerRadius(30)
                 .padding(.horizontal, 10)
