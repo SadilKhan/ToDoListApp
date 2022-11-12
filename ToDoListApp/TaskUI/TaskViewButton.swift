@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: NAVIGATION PAGE LINK
 struct NextPageNavLink: View {
     var key: String
-    @EnvironmentObject var itemDataBase: ItemDB
+    @EnvironmentObject var itemDataBase: ItemViewModel
     @ObservedObject var viewRouter: ViewRouter
     var body: some View {
         NavigationLink {
@@ -34,14 +34,6 @@ struct NewButton: View {
     }
 }
 
-// MARK: NEW BUTTON
-/// New Button which opens InformationView Window
-struct HelpButton: View {
-    var body: some View {
-        Link("Help", destination: URL(string: "https://github.com/SadilKhan/ToDoListApp")!)
-    }
-}
-
 // MARK: ADD BUTTON
 /// Opens a new window for adding an item
 struct AddButton: View {
@@ -57,11 +49,23 @@ struct AddButton: View {
     }
 }
 
+//struct DarkModeButton: View {
+//    @Environment(\.colorScheme) var colorscheme
+//    var body: some View{
+//        Button {
+//        } label: {
+//            Image(systemName: colorscheme == .dark ? "moon.haze.circle.fill" : "sun.haze.circle.fill")
+//                .foregroundColor(.primary)
+//        }
+//
+//    }
+//}
+
 
 /// Undo function which adds the deleted items
 struct UndoButton: View {
 //    @Binding var isUndoDisabled: Bool
-    @EnvironmentObject var itemDataBase: ItemDB
+    @EnvironmentObject var itemDataBase: ItemViewModel
     var body: some View {
         Button {
             if itemDataBase.allDeletedItems.count > 0 {
@@ -79,7 +83,7 @@ struct UndoButton: View {
 // MARK: UPDATE BUTTON
 /// Updates the current list based on the completed item
 struct UpdateButton: View {
-    @EnvironmentObject var itemDataBase: ItemDB
+    @EnvironmentObject var itemDataBase: ItemViewModel
     @Binding var toUpdate: Bool
     var body: some View {
         Button {

@@ -17,7 +17,7 @@ struct TabIconView: View {
             buttonLabel
         }
             .padding(.horizontal, -4)
-            .foregroundColor(viewRouter.currentPage == assignedPage ? .blue : .gray.opacity(0.5))
+            .foregroundColor(viewRouter.currentPage == assignedPage ? ColorsDB.colorManager.tabIconColor : .gray.opacity(0.5))
     }
     // Label for Tab Button
     private var buttonLabel: some View {

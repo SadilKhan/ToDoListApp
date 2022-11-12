@@ -4,17 +4,26 @@ import SwiftUI
 /// The main view where tasks are shown
 struct TaskView: View {
     let navTitle: String
-    @EnvironmentObject private var itemDataBase: ItemDB
+    @EnvironmentObject private var itemDataBase: ItemViewModel
     @State private var toUpdate: Bool = false
-    @State private var searchText: String = ""
+    @Binding var searchText: String
     @ObservedObject var viewRouter: ViewRouter
-    
+    let date = Date()
+
     var body: some View {
         NavigationView { // NAV START
             //
             listView
             // Navigation Bar Customization
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always)) {
+                if searchText == "" {
+                    Text("Looking for today's tasks").font(.body).searchCompletion("Today")
+                    Text("Looking for tasks in the current month").font(.body).searchCompletion(date.month)
+                    Text("Looking for personal tasks").font(.body).searchCompletion("Personal")
+                    Text("Looking for completed tasks").font(.body).searchCompletion("Completed")
+
+                }
+            }
                 .navigationTitle(navTitle)
                 .toolbar { // TOOLBAR START
                 // Edit Button
@@ -29,16 +38,16 @@ struct TaskView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     UndoButton()
                 }
-                // Add Undo for new items
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HelpButton()
-                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    DarkModeButton()
+//                }
                 // Add Button for new items
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NewButton(viewRouter: viewRouter)
                 }
             }
         } // NAV END
+
 
     }
 
@@ -47,7 +56,7 @@ struct TaskView: View {
 // MARK: SUB VIEWS
 
 extension TaskView {
-    
+
     /// The results of the search textfield
     private var searchResults: [String: [String: ToDoItem]] {
         var selectedKeys: [String: [String: ToDoItem]] = [:]
@@ -59,7 +68,13 @@ extension TaskView {
                 if let valueDict = itemDataBase.dateMapped[dateKey] {
                     temp = [:]
                     for (key, value) in valueDict {
-                        if value.getTitleText().lowercased().contains(searchText.lowercased()) || value.getDecriptionText().lowercased().contains(searchText.lowercased()) || value.getType().rawValue.lowercased().contains(searchText.lowercased()) || dateKey.lowercased().contains(searchText.lowercased()) {
+                        if searchText.lowercased().contains("done") || searchText.lowercased().contains("complete") || searchText.lowercased().contains("finish") {
+
+                            if let isDone = itemDataBase.allDone[key] {
+                                if isDone { temp[key] = value }
+                            }
+
+                        } else if value.getTitleText().lowercased().contains(searchText.lowercased()) || value.getDecriptionText().lowercased().contains(searchText.lowercased()) || value.getType().lowercased().contains(searchText.lowercased()) || dateKey.lowercased().contains(searchText.lowercased()) {
                             temp[key] = value
                         }
                     }
@@ -147,9 +162,6 @@ extension TaskView {
     }
 }
 
-
-
-
 // MARK: ITEM LIST
 
 /// The item lists that will be shown on the main page
@@ -159,7 +171,7 @@ extension TaskView {
 ///    - key: String
 struct ItemList: View {
     var key: String
-    @EnvironmentObject var itemDataBase: ItemDB
+    @EnvironmentObject var itemDataBase: ItemViewModel
     @State var isDone: Bool = false
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     var body: some View {
@@ -175,32 +187,40 @@ struct ItemList: View {
                     .opacity(0.5)
             }
             HStack {
-                Toggle(isOn: $isDone) {
-                }
-                    .toggleStyle(CheckToggleStyle())
-                    .onChange(of: isDone) { newValue in
+                Button {
                     withAnimation(.easeInOut(duration: 0.5)) {
-                        itemDataBase.allDone[key] = newValue
+                        isDone.toggle()
+                        itemDataBase.allDone[key] = isDone
                     }
+                } label: {
+                    Image(systemName: isDone ? "checkmark.circle.fill" : "circle")
+                        .foregroundColor(isDone ? .purple : Color(uiColor: UIColor.magenta))
+                        .accessibilityLabel(Text(isDone ? "Checked" : "Unchecked"))
+                        .imageScale(.large)
+                }
+                    .buttonStyle(.plain)
+                    .onAppear {
+                    isDone = itemDataBase.allDone[key] ?? false
                 }
                 // Title
                 Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getTitleText() : "")
-                    .strikethrough(isDone)
+                    .strikethrough(itemDataBase.allDone[key] ?? false)
                     .font(.body)
                 //.fontWeight(.medium)
                 .foregroundColor(.primary)
                 Spacer()
                 HStack {
                     // Type
-                    Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType().rawValue : "")
+                    Text(itemDataBase.allItems[key] != nil ? itemDataBase.allItems[key]!.getType() : "")
                         .font(.caption)
                         .fontWeight(.light)
                     if itemDataBase.allItems[key] != nil {
-                        colorForType(itemDataBase.allItems[key]!.getType().rawValue)
+                        colorForType(itemDataBase.allItems[key]!.getType())
                     }
                 }
             }
         }
+
             .contextMenu {
             // Duplicate Button
             Button(action: {

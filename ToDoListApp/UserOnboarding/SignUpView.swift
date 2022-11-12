@@ -60,7 +60,7 @@ struct SignUpView: View {
     }
 }
 
-// MARK: PROPERTIES
+// MARK: SUB VIEWS
 extension SignUpView {
 
     var nameView: some View {
@@ -145,7 +145,7 @@ extension SignUpView {
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
 
-                Slider(value: $currentAge, in: 18...100, step: 1)
+                Slider(value: $currentAge, in: 18...60, step: 1)
                     .tint(.white)
                     .padding(.horizontal, 20)
                 Spacer()
@@ -246,8 +246,8 @@ struct createNameView: View {
                 .padding()
                 .background(
                 RoundedRectangle(cornerRadius: 20)
-                    //.fill(.white)
-                    .fill(.thickMaterial)
+                //.fill(.white)
+                .fill(.thickMaterial)
                     .opacity(0.5)
             )
                 .padding(.horizontal, 20)

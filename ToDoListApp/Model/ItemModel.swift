@@ -5,17 +5,18 @@ import SwiftUI
 ///
 /// The ToDoItem class objects are the items listed on the Main Page. It stores and returns the metadata like title, description and date of an item.
 ///
-class ToDoItem: Identifiable {
+class ToDoItem: Identifiable, Codable {
 
     // MARK: Properties
+    var id = UUID().uuidString
     private var titleText: String
     private var descriptionText: String
     private var date: Date
     var isDone: Bool = false
-    private var type: TaskType
+    private var type: String
 
 
-    init(titleText: String, descriptionText: String, type: TaskType, date: Date) {
+    init(titleText: String, descriptionText: String, type: String, date: Date) {
         self.titleText = titleText
         self.descriptionText = descriptionText
         self.type = type
@@ -33,14 +34,24 @@ class ToDoItem: Identifiable {
     func getDate() -> Date {
         return date
     }
-    func getType() -> TaskType {
+    func getType() -> String {
         return type
     }
 }
 
+extension ToDoItem: Equatable {
+    static func == (class1: ToDoItem, class2: ToDoItem) -> Bool {
+        return
+        class1.id == class2.id
+    }
+}
 
-enum TaskType:String {
-    case Personal = "Personal"
-    case Work = "Work"
-    case Misc = "Misc"
+
+enum TaskType: String {
+    case Personal
+    case Work
+    case Meeting
+    case Sports
+    case Shopping
+    case Misc
 }

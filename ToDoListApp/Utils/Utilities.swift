@@ -91,10 +91,10 @@ func getAlert() -> Alert {
 ///   - value1: First dictionary item of [String:ToDoItem]
 ///   - value2: Second dictionary item of [String:ToDoItem]
 /// - Returns: Returns a bool value comparing value1 and value2
-func dateSortMethod(_ value1:[String:ToDoItem],_ value2:[String:ToDoItem]) -> Bool{
-    
-    if value1.count>0 && value2.count>0{
-        if Array(value1.values)[0].getDate() < Array(value2.values)[0].getDate(){
+func dateSortMethod(_ value1: [String: ToDoItem], _ value2: [String: ToDoItem]) -> Bool {
+
+    if value1.count > 0 && value2.count > 0 {
+        if Array(value1.values)[0].getDate() < Array(value2.values)[0].getDate() {
             return true
         } else {
             return false
@@ -106,14 +106,28 @@ func dateSortMethod(_ value1:[String:ToDoItem],_ value2:[String:ToDoItem]) -> Bo
 /// Sort the dictionary by date
 /// - Parameter dateDict: A [String:[String:ToDoItem]] dictionary
 /// - Returns: Returns the keys of the sorted dictionary
-func sortDateKeys(_ dateDict:[String:[String:ToDoItem]]) -> [String]{
-    
-    var sortedKeys:[String]=[]
-    let sortedArr = dateDict.sorted(by: {s1,s2 in dateSortMethod(s1.value,s2.value)})
-    
-    sortedArr.forEach { (key: String, value: [String:ToDoItem]) in
+func sortDateKeys(_ dateDict: [String: [String: ToDoItem]]) -> [String] {
+
+    var sortedKeys: [String] = []
+    let sortedArr = dateDict.sorted(by: { s1, s2 in dateSortMethod(s1.value, s2.value) })
+
+    sortedArr.forEach { (key: String, value: [String: ToDoItem]) in
         sortedKeys.append(key)
     }
     return sortedKeys
 }
 
+
+extension Date {
+    var month: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        return dateFormatter.string(from: self)
+    }
+}
+
+
+enum SystemColorMode {
+    case light
+    case dark
+}

@@ -108,11 +108,11 @@ extension ProfileView {
     }
 
     var profilePicView: some View {
-        VStack{
+        VStack {
             customText(title: "Profile Picture")
             ZStack {
                 Circle()
-                    .stroke(.black)
+                    .stroke(.primary)
                     .frame(width: 100, height: 100)
                 Image(systemName: "person.fill")
                     .resizable()

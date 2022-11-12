@@ -20,12 +20,12 @@ struct InformationView: View {
     @State var titleText: String
     @State var descriptionText: String
     @State var selectedDate: Date
-    @State var typeSelected: TaskType
+    @State var typeSelected: String
     @State var showAlert: Bool = false
     @State var isAnimated: Bool = false
     @ObservedObject var viewRouter: ViewRouter
     var id: String = ""
-    @EnvironmentObject var itemDataBase: ItemDB
+    @EnvironmentObject var itemDataBase: ItemViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -97,7 +97,7 @@ struct InformationView: View {
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
         self._selectedDate = State(initialValue: Date())
-        self._typeSelected = State(initialValue: .Personal)
+        self._typeSelected = State(initialValue: TaskType.Personal.rawValue)
         self.viewRouter = viewRouter
     }
 
@@ -116,7 +116,7 @@ struct InformationView: View {
         self._titleText = State(initialValue: "")
         self._descriptionText = State(initialValue: "")
         self._selectedDate = State(initialValue: date)
-        self._typeSelected = State(initialValue: .Personal)
+        self._typeSelected = State(initialValue: TaskType.Personal.rawValue)
         self.viewRouter = viewRouter
     }
 
